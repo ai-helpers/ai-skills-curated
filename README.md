@@ -16,6 +16,18 @@ these companies.
 
 ## References
 
+### AI skills
+
+#### Vercel labs
+
+* [Vercel labs - Skills homepage](https://skills.sh)
+* [GitHub - Vercel labs - Skills](https://github.com/vercel-labs/skills)
+
+#### Skills related to dbt
+
+* [dbt doc - dbt agent skills](https://docs.getdbt.com/blog/dbt-agent-skills)
+
+### Data Engineering Helpers
+
 * [Data Engineering Helpers - Knowledge Sharing - AI Skills](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/ai/rules-skills/)
 * [Data Engineering Helpers - Knowledge Sharing - JavaScript (JS) world](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/js-world/)
-
