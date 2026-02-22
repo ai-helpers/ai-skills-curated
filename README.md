@@ -9,6 +9,8 @@
     * [AI skills](#ai-skills)
       * [Vercel labs](#vercel-labs)
       * [Skills related to dbt](#skills-related-to-dbt)
+      * [AI helpers skill sets](#ai-helpers-skill-sets)
+        * [Managing Python projects with uv](#managing-python-projects-with-uv)
     * [Data Engineering Helpers](#data-engineering-helpers)
   * [Getting started](#getting-started)
     * [List the skills already installed](#list-the-skills-already-installed)
@@ -42,6 +44,12 @@ these companies.
 
 * [dbt doc - dbt agent skills](https://docs.getdbt.com/blog/dbt-agent-skills)
 
+#### AI helpers skill sets
+
+##### Managing Python projects with uv
+
+* [Skills.sh - `ai-helpers/ai-skills-curated` `managing-python-projects-with-uv` skill set](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv)
+
 ### Data Engineering Helpers
 
 * [Data Engineering Helpers - Knowledge Sharing - AI Skills](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/ai/rules-skills/)
@@ -59,6 +67,7 @@ npx skills list
 
 * List the skills installed globally (in the user directory, that is,
   in the `$HOME/.agents/skills/` directory):
+
 ```bash
 npx skills list -g
 ```
@@ -92,4 +101,3 @@ npx skills add ai-helpers/ai-skills-curated managing-python-projects-with-uv --g
 ```bash
 npx skills remove managing-python-projects-with-uv -g
 ```
-
