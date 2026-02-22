@@ -10,6 +10,9 @@ help: ## Show this help message
 	@echo "Available targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
 
+git-add: ## Git stage the main files
+	@git add .gitignore Makefile README.md pyproject.toml src/ tests/ uv.lock
+
 init-uv-python: ## Install Python $(PYTHON_VERSION) if necessary
 	@$(UV) python install $(PYTHON_VERSION)
 

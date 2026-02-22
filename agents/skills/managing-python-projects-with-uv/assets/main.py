@@ -1,6 +1,6 @@
 
 def main():
-    print("Hello from AI helpers skill set!")
+    print("Hello from my-project!")
 
 
 if __name__ == "__main__":

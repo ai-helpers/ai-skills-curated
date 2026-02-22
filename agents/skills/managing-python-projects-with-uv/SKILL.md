@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires uv
 metadata:
   author: ai-helpers
-  version: "0.0.1"
+  version: "0.0.2"
 ---
 
 # Managing Python Projects with uv
@@ -59,8 +59,11 @@ Use this skill when:
   compatible with uv
 * [README.md](assets/README.md) — Example of relevant excerpts in the README file
 * [main.py](assets/main.py) — Example of working standalone main.py file, to be
-  copied in the `src/my_project/` directory (if not existing, be sure to create
+  copied in the `src/<project>/` directory (if not existing, be sure to create
   that directory, adapting to your project)
+* [`test_main.py`](assets/test_main.py) — Example of working `test_main.py`
+  Python test script, to be copied in the `tests/` directory (if not existing,
+  be sure to create that directory)
 * [.gitignore](assets/.gitignore) - Example of relevant excerpts in the `.gitignore`
   file, Git-ignoring Python-/uv-related files
 
@@ -87,7 +90,10 @@ Use this skill when:
   compatible with uv
   * [README.md](assets/README.md)
   * [main.py](assets/main.py)
+  * [`test_main.py`](assets/test_main.py)
   * [.gitignore](assets/.gitignore)
+
+### Quick start
 
 * If not already done so, install a specific Python version for uv:
 
@@ -110,9 +116,10 @@ make clean
   `src/<project>/` directory:
 
 ```bash
-mkdir -p src/<project>
+mkdir -p src/<project> tests
 cp assets/main.py src/<project>/
-git add src/<project>/main.py
+cp assets/test_main.py tests/
+git add src/<project>/main.py tests/test_main.py
 ```
 
 * Initialize the Python environment with uv:
@@ -121,19 +128,33 @@ git add src/<project>/main.py
 make init update
 ```
 
-* (Optional) Build the artifact (Python wheel):
-
-```bash
-make build
-```
-
 * Run the Python script:
 
 ```bash
 make run
 ```
 
-* (Optional) Publish the artifact (Python wheel):
+### Useful commands
+
+* Build the artifact (Python wheel):
+
+```bash
+make build
+```
+
+* Check (with the linter and type checkers) that there is no Python issue:
+
+```bash
+make check
+```
+
+* Test the Python package:
+
+```bash
+make test
+```
+
+* Publish the artifact (Python wheel):
 
 ```bash
 make publish
