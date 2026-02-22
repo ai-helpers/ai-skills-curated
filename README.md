@@ -11,7 +11,9 @@
       * [Skills related to dbt](#skills-related-to-dbt)
     * [Data Engineering Helpers](#data-engineering-helpers)
   * [Getting started](#getting-started)
+    * [List the skills already installed](#list-the-skills-already-installed)
     * [Install a skill locally](#install-a-skill-locally)
+    * [Remove a skill](#remove-a-skill)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
@@ -47,6 +49,20 @@ these companies.
 
 ## Getting started
 
+### List the skills already installed
+
+* List the skills brought by the current project:
+
+```bash
+npx skills list
+```
+
+* List the skills installed globally (in the user directory, that is,
+  in the `$HOME/.agents/skills/` directory):
+```bash
+npx skills list -g
+```
+
 ### Install a skill locally
 
 * The available skill sets may be browsed online: all the skill sets are in the
@@ -67,3 +83,13 @@ npx skills add ai-helpers/ai-skills-curated <sill-set> --global
 ```bash
 npx skills add ai-helpers/ai-skills-curated managing-python-projects-with-uv --global
 ```
+
+### Remove a skill
+
+* In order to remove an installed skill set, use `npx skills remove <skill>`.
+  For instance, to remove the `managing-python-projects-with-uv` skill set:
+
+```bash
+npx skills remove managing-python-projects-with-uv -g
+```
+
