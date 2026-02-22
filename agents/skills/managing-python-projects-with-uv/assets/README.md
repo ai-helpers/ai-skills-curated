@@ -26,15 +26,57 @@ Initial Python project scaffold managed with `uv`.
 
 ```bash
 make init-uv-python PYTHON_VERSION=3.12
-make init
-make update
+make init update
+make check
+make test
 make run
 ```
 
 ## Useful commands
 
-- `make test`
-- `make lint`
-- `make format`
-- `make type-check`
-- `make build`
+* `make check` — run lint + type checks
+* `make format` — fix formatting
+* `make test` — run tests with coverage
+* `make build` — build source and wheel distributions
+* `make publish` — publish distributions to PyPI
+
+## Publishing to PyPI
+
+### Local publish
+
+Set a token first:
+
+```bash
+export UV_PUBLISH_TOKEN=<your-pypi-token>
+make publish
+```
+
+Or configure `~/.pypirc`:
+
+```ini
+[distutils]
+index-servers =
+        pypi
+        testpypi
+
+[pypi]
+repository = https://upload.pypi.org/legacy/
+username = __token__
+password = <your-pypi-token>
+
+[testpypi]
+repository = https://test.pypi.org/legacy/
+username = __token__
+password = <your-testpypi-token>
+```
+
+With a TestPyPI token set as `UV_PUBLISH_TOKEN`, you can publish to TestPyPI:
+
+```bash
+make publish-testpypi
+```
+
+### GitHub Actions publish
+
+The `publish.yml` workflow uses PyPI trusted publishing (OIDC) on release.
+

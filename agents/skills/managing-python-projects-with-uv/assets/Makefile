@@ -60,5 +60,8 @@ clean: ## Remove build artifacts and cache files
 publish: ## Publish to PyPI
 	@$(UV) publish
 
+publish-testpypi: ## Publish built artifacts to TestPyPI
+	@$(UV) publish --publish-url https://test.pypi.org/legacy/
+
 run: ## Run the application
 	@$(UV) run src/my_project/main.py
