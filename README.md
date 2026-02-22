@@ -51,9 +51,13 @@ these companies.
 
 #### AI helpers skill sets
 
+* [GitHub - AI Helpers - AI skills curated (this Git repository)](https://github.com/ai-helpers/ai-skills-curated)
+* [GitHub - AI Helpers - AI skills curated - Overview notebook](https://github.com/ai-helpers/ai-skills-curated/blob/main/notebooks/000%20-%20KS%20-%20Curated%20AI%20Skills%20-%20Overview.ipynb)
+
 ##### Managing Python projects with uv
 
-* [Skills.sh - `ai-helpers/ai-skills-curated` `managing-python-projects-with-uv` skill set](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv)
+* [GitHub - AI Helpers / AI Skills curated - `managing-python-projects-with-uv` skill set](https://github.com/ai-helpers/ai-skills-curated/tree/main/agents/skills/managing-python-projects-with-uv)
+* [Skills.sh - AI Helpers / AI Skills curated - `managing-python-projects-with-uv` skill set](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv)
 
 ### Data Engineering Helpers
 
