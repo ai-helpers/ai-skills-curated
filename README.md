@@ -8,6 +8,7 @@
   * [References](#references)
     * [AI skills](#ai-skills)
       * [Vercel labs](#vercel-labs)
+      * [Agent skill formatting](#agent-skill-formatting)
       * [Skills related to dbt](#skills-related-to-dbt)
       * [AI helpers skill sets](#ai-helpers-skill-sets)
         * [Managing Python projects with uv](#managing-python-projects-with-uv)
@@ -39,6 +40,10 @@ these companies.
 
 * [Vercel labs - Skills homepage](https://skills.sh)
 * [GitHub - Vercel labs - Skills](https://github.com/vercel-labs/skills)
+
+#### Agent skill formatting
+
+* [Agent Skills - Specification](https://agentskills.io/specification)
 
 #### Skills related to dbt
 

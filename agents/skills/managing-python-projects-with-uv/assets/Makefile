@@ -1,3 +1,5 @@
+
+PYTHON_VERSION := 3.12
 UV ?= uv
 
 .PHONY: help init update install test lint format clean
@@ -8,16 +10,19 @@ help: ## Show this help message
 	@echo "Available targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
 
+init-uv-python: ## Install Python $(PYTHON_VERSION) if necessary
+	@$(UV) python install $(PYTHON_VERSION)
+
 init: ## uv - Creates/updates the uv.lock file
-	@uv lock
-	@uv export --format requirements.txt > requirements.txt
+	@$(UV) lock
+	@$(UV) export --format requirements.txt > requirements.txt
 
 update: ## uv - Upgrades the uv.lock file
-	@uv sync
-	@uv export --format requirements.txt > requirements.txt
-
-install: ## uv - Install dependencies from lock file
 	@$(UV) sync
+	@$(UV) export --format requirements.txt > requirements.txt
+
+build: ## Build the software artifact (wheel)
+	@$(UV) build
 
 test: ## Run tests with pytest
 	@$(UV) run pytest
@@ -49,11 +54,8 @@ clean: ## Remove build artifacts and cache files
 	@find . -type d -name __pycache__ -exec rm -rf {} +
 	@find . -type f -name "*.pyc" -delete
 
-build: ## Build distribution packages
-	@$(UV) build
-
 publish: ## Publish to PyPI
 	@$(UV) publish
 
 run: ## Run the application
-	@$(UV) run python -m my_project
+	@$(UV) run src/my_project/main.py
