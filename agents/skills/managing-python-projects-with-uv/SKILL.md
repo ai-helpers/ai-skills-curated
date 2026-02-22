@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires uv
 metadata:
   author: ai-helpers
-  version: "0.0.4"
+  version: "0.0.5"
 ---
 
 # Managing Python Projects with uv
@@ -67,8 +67,11 @@ Use this skill when:
 * [.gitignore](assets/.gitignore) - Example of relevant excerpts in the `.gitignore`
   file, Git-ignoring Python-/uv-related files
 * [ci.yml](assets/ci.yml) - Example of relevant excerpts in the `ci.yml` CI/CD
-  (GitHub Actions) pipeline, to be copied into the `.github/workflows/`
+  (GitHub Actions) dev pipeline, to be copied into the `.github/workflows/`
   directory (if not existing, be sure to create that directory)
+* [publish.yml](assets/publish.yml) - Example of relevant excerpts in the
+  `publish.yml` CI/CD (GitHub Actions) release pipeline, to be copied into the
+  `.github/workflows/` directory
 
 ### Data Engineering Helpers
 
@@ -90,12 +93,12 @@ Use this skill when:
   files):
   * [Makefile](assets/Makefile)
   * [pyproject.toml](assets/pyproject.toml)
-  compatible with uv
   * [README.md](assets/README.md)
   * [main.py](assets/main.py)
   * [`test_main.py`](assets/test_main.py)
   * [.gitignore](assets/.gitignore)
   * [ci.yml](assets/ci.yml)
+  * [publish.yml](assets/publish.yml)
 
 ### Quick start
 
@@ -123,8 +126,8 @@ make clean
 mkdir -p src/<project> tests .github/workflows
 cp assets/main.py src/<project>/
 cp assets/test_main.py tests/
-cp assets/ci.yml .github/workflows/
-git add src/<project>/main.py tests/test_main.py .github/workflows/ci.yml
+cp assets/*.yml .github/workflows/
+git add src/<project>/main.py tests/test_main.py .github/workflows/*.yml
 ```
 
 * Initialize the Python environment with uv:
