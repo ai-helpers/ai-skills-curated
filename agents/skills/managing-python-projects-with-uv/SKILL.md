@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires uv
 metadata:
   author: ai-helpers
-  version: "0.0.2"
+  version: "0.0.3"
 ---
 
 # Managing Python Projects with uv
@@ -66,6 +66,9 @@ Use this skill when:
   be sure to create that directory)
 * [.gitignore](assets/.gitignore) - Example of relevant excerpts in the `.gitignore`
   file, Git-ignoring Python-/uv-related files
+* [ci.yml](assets/ci.yml) - Example of relevant excerpts in the `ci.yml` CI/CD
+  (GitHub Actions) pipeline, to be copied into the `.github/workflows/`
+  directory (if not existing, be sure to create that directory)
 
 ### Data Engineering Helpers
 
@@ -92,6 +95,7 @@ Use this skill when:
   * [main.py](assets/main.py)
   * [`test_main.py`](assets/test_main.py)
   * [.gitignore](assets/.gitignore)
+  * [ci.yml](assets/ci.yml)
 
 ### Quick start
 
@@ -116,10 +120,11 @@ make clean
   `src/<project>/` directory:
 
 ```bash
-mkdir -p src/<project> tests
+mkdir -p src/<project> tests .github/workflows
 cp assets/main.py src/<project>/
 cp assets/test_main.py tests/
-git add src/<project>/main.py tests/test_main.py
+cp assets/ci.yml .github/workflows/
+git add src/<project>/main.py tests/test_main.py .github/workflows/ci.yml
 ```
 
 * Initialize the Python environment with uv:
