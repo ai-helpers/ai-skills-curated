@@ -2,6 +2,19 @@
 
 ## Table of Content (ToC)
 
+* [Knowledge sharing \- Curated AI Skills](#knowledge-sharing---curated-ai-skills)
+  * [Table of Content (ToC)](#table-of-content-toc)
+  * [Overview](#overview)
+  * [References](#references)
+    * [AI skills](#ai-skills)
+      * [Vercel labs](#vercel-labs)
+      * [Skills related to dbt](#skills-related-to-dbt)
+    * [Data Engineering Helpers](#data-engineering-helpers)
+  * [Getting started](#getting-started)
+    * [Install a skill locally](#install-a-skill-locally)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
+
 ## Overview
 
 [This project](https://github.com/ai-engineering-helpers/ai-skills-curated)
@@ -31,3 +44,26 @@ these companies.
 
 * [Data Engineering Helpers - Knowledge Sharing - AI Skills](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/ai/rules-skills/)
 * [Data Engineering Helpers - Knowledge Sharing - JavaScript (JS) world](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/js-world/)
+
+## Getting started
+
+### Install a skill locally
+
+* The available skill sets may be browsed online: all the skill sets are in the
+  [`agents/skills/` directory](https://github.com/ai-helpers/ai-skills-curated/blob/main/agents/skills/)
+
+* In order to install a skill set for generic agents (the `--global` parameter
+  will have the skill set installed in the `$HOME/.agents/skills/` global user
+  directory):
+
+```bash
+npx skills add ai-helpers/ai-skills-curated <sill-set> --global
+```
+
+* For instance, for the
+  [`managing-python-projects-with-uv`](https://github.com/ai-helpers/ai-skills-curated/tree/main/agents/skills/managing-python-projects-with-uv/)
+  skill set:
+
+```bash
+npx skills add ai-helpers/ai-skills-curated managing-python-projects-with-uv --global
+```
