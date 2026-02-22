@@ -1,5 +1,10 @@
 # my-project
 
+[![CI](https://github.com/<owner>/my-new-python-project/actions/workflows/ci.yml/badge.svg)](https://github.com/<owner>/my-new-python-project/actions/workflows/ci.yml)
+
+**Note:** Replace `<owner>` with your GitHub username or organization after
+pushing the repository.
+
 Initial Python project scaffold managed with `uv`.
 
 ## References
