@@ -17,6 +17,7 @@
     * [List the skills already installed](#list-the-skills-already-installed)
     * [Install a skill locally](#install-a-skill-locally)
     * [Remove a skill](#remove-a-skill)
+    * [Update skills](#update-skills)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
