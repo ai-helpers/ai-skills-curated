@@ -11,8 +11,8 @@ Initial Python project scaffold managed with `uv`.
 
 ### Data Engineering Helpers
 
-* [Data Engineering Helpers - Knowledge Sharing - Python](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/python/) -
-  Cheat sheet for how to set up and use Python, especially detailing the
+* [Data Engineering Helpers - Knowledge Sharing - Python](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/python/)
+  * Cheat sheet for how to set up and use Python, especially detailing the
   installation and use of uv
 
 ### uv
@@ -79,4 +79,3 @@ make publish-testpypi
 ### GitHub Actions publish
 
 The `publish.yml` workflow uses PyPI trusted publishing (OIDC) on release.
-

@@ -45,15 +45,7 @@ type-check: ## Run mypy type checker
 check: lint type-check ## Run all checks (lint + type-check)
 
 clean: ## Remove build artifacts and cache files
-	@rm -rf .venv
-	@rm -rf dist/
-	@rm -rf build/
-	@rm -rf *.egg-info
-	@rm -rf .pytest_cache
-	@rm -rf .coverage
-	@rm -rf htmlcov/
-	@rm -rf .mypy_cache
-	@rm -rf .ruff_cache
+	@rm -rf .venv dist/ build/ *.egg-info .pytest_cache .coverage htmlcov/ .mypy_cache .ruff_cache
 	@find . -type d -name __pycache__ -exec rm -rf {} +
 	@find . -type f -name "*.pyc" -delete
 
@@ -65,3 +57,4 @@ publish-testpypi: ## Publish built artifacts to TestPyPI
 
 run: ## Run the application
 	@$(UV) run src/my_project/main.py
+

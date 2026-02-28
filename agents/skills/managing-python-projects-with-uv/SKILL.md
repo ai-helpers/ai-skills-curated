@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires uv
 metadata:
   author: ai-helpers
-  version: "0.0.6"
+  version: "0.0.7"
 ---
 
 # Managing Python Projects with uv
@@ -75,15 +75,14 @@ Use this skill when:
 
 ### Data Engineering Helpers
 
-* [Data Engineering Helpers - Knowledge Sharing - Python](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/python/) -
-  Cheat sheet for how to set up and use Python, especially detailing the
+* [Data Engineering Helpers - Knowledge Sharing - Python](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/python/)
+  - Cheat sheet for how to set up and use Python, especially detailing the
   installation and use of uv
 
 ### uv
 
 * [Astral doc - uv](https://docs.astral.sh/uv/)
 * [GitHub - Astral - uv](https://github.com/astral-sh/uv)
-* [Astral doc - uv installation](https://docs.astral.sh/uv/getting-started/installation/)
 * [Astral doc - uv migration guides](https://docs.astral.sh/uv/guides/)
 
 ## Quick Reference
