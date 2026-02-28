@@ -63,7 +63,7 @@ these companies.
 ### Data Engineering Helpers
 
 * [Data Engineering Helpers - Knowledge Sharing - AI Skills](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/ai/rules-skills/)
-* [Data Engineering Helpers - Knowledge Sharing - Databricks AI Dev Kit](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/ai/rules-skills/)
+* [Data Engineering Helpers - Knowledge Sharing - Databricks AI Dev Kit](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/ai/databricks-ai-dev-kit/)
 * [Data Engineering Helpers - Knowledge Sharing - JavaScript (JS) world](https://github.com/data-engineering-helpers/ks-cheat-sheets/blob/main/programming/js-world/)
 
 ## Getting started
