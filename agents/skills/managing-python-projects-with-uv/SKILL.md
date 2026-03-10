@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires uv
 metadata:
   author: ai-helpers
-  version: "0.0.7"
+  version: "0.0.8"
 ---
 
 # Managing Python Projects with uv
