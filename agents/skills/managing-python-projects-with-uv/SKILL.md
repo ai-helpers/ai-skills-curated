@@ -12,7 +12,8 @@ metadata:
 
 ## Overview
 
-This skill helps you work with Python projects managed by
+[This skill](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv)
+helps you work with Python projects managed by
 [uv](https://github.com/astral-sh/uv), an extremely fast Python package and project
 manager written in Rust. Use this skill for:
 
@@ -87,6 +88,7 @@ Use this skill when:
 
 ## Quick Reference
 
+* [Skills.sh - `managing-python-projects-with-uv` (this Skill on the Skills marketplace)](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv)
 * Integrate the sample files into your project directory (if you had not any such
   file, just copy them; otherwise, merge their content within your corresponding
   files):
@@ -100,6 +102,41 @@ Use this skill when:
   * [publish.yml](assets/publish.yml)
 
 ### Quick start
+
+* If not already done so, install
+  [this skill](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv),
+  * Either globally:
+
+```bash
+npx skills add https://github.com/ai-helpers/ai-skills-curated \
+    --skill managing-python-projects-with-uv -g
+```
+
+* Or locally:
+
+```bash
+npx skills add https://github.com/ai-helpers/ai-skills-curated \
+    --skill managing-python-projects-with-uv
+```
+
+* Create an empty directory, initilize it with Git and open VS Code:
+
+```bash
+mkdir -p ~/tmp/my-new-python-project && cd ~/tmp/my-new-python-project
+git init
+code .
+```
+
+* Prompt the AI agent with something like
+
+> With the managing-python-projects-with-uv skill, create a Python project,
+> with testing, CI/CD and publishing capability on Pypi"
+
+* Stage in Git the just created resources:
+
+```bash
+git add pyproject.toml Makefile .github .gitignore src tests README.md
+```
 
 * If not already done so, install a specific Python version for uv:
 
@@ -132,7 +169,7 @@ git add src/<project>/main.py tests/test_main.py .github/workflows/*.yml
 * Initialize the Python environment with uv:
 
 ```bash
-make init update
+make init # update
 ```
 
 * Run the Python script:
