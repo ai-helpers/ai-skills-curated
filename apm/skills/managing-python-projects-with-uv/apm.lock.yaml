@@ -1,0 +1,12 @@
+lockfile_version: '1'
+generated_at: '2026-04-15T09:00:44.101045+00:00'
+apm_version: 0.8.11
+dependencies:
+- repo_url: ai-helpers/ai-skills-curated
+  host: github.com
+  resolved_commit: 5757733e2c7fe4744a4a00cf4cd92d70b85cb78a
+  package_type: apm_package
+  deployed_files:
+  - .github/agents/README.agent.md
+  - .github/agents/SKILL.agent.md
+  content_hash: sha256:b18c9adf72ba0d3174450c2b1769df7a99b20288016e20e7d9a4d18dd3f0a1a4

@@ -1,0 +1,27 @@
+# Distributions
+/dist/
+
+# Environments
+/.venv/
+
+# IDE
+/.idea/
+/.vscode/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+*.py[cod]
+__pycache__/
+/requirements.txt
+/build/
+*.egg-info/
+typings/
+
+# Temporary
+/tmp/
+
+

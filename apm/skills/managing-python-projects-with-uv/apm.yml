@@ -1,0 +1,9 @@
+name: managing-python-projects-with-uv
+version: 1.0.0
+description: APM project for managing-python-projects-with-uv
+author: Denis Arnaud
+dependencies:
+  apm:
+  - ai-helpers/ai-skills-curated
+  mcp: []
+scripts: {}
