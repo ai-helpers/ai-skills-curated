@@ -116,12 +116,12 @@ apm install github/awesome-copilot/skills/review-and-refactor
   rationale for Cursor users.
 * `apm_modules/` — add to `.gitignore`. Rebuilt from the lockfile on install
 
-!**Keeping deployed files in sync**
+**Keeping deployed files in sync**
 > When you update `apm.yml`, re-run `apm install` and commit the changed
 > `.github/`, `.claude/`, and `.cursor/` files. A CI drift check catches stale
 > files automatically
 
-!**Using Codex or Gemini?**
+**Using Codex or Gemini?**
 > These tools use different configuration formats. Run `apm compile` after
 > installing to generate their native files.
 > See the [Compilation guide](https://microsoft.github.io/apm/guides/compilation/)
