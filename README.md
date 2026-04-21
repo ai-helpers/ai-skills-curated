@@ -23,7 +23,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
 ## Overview
 
-[This project](https://github.com/ai-engineering-helpers/ai-skills-curated)
+[This project](https://github.com/ai-helpers/ai-skills-curated)
 aims at collecting so-called AI agent/assistant skills (and associated rules).
 Each skill set may be installed either locally in a given project or in the user
 space, for instance in the `~/.agents/skills/`, where typical assistants/agents
