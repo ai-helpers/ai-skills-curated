@@ -85,6 +85,21 @@ This project uses a **split auth** model:
 | ADC (`~/.config/gcloud/...`) | Vertex AI tools | `make auth-adc` |
 | Drive OAuth token (`env/drive-oauth-token.json`) | `drive-list_recent_files` | `make auth-drive` |
 
+Google Drive needs a separate OAuth flow because Google APIs are normally
+accessed by an **OAuth client application** acting on behalf of a user. In this
+setup, the local `make auth-drive` helper is that client application. You must
+create it in the **Google Auth Platform**:
+
+- Overview: <https://console.cloud.google.com/auth/overview>
+- Clients: <https://console.cloud.google.com/auth/clients>
+- Create client: <https://console.cloud.google.com/auth/clients/create?project=YOUR_PROJECT_ID>
+
+For personal Google accounts, that client is usually **External**. Public OAuth
+apps may eventually need Google's verification process, but a private/dev setup
+does not. The non-obvious part is that a Testing-mode app still requires you to
+add your own Google account under **Test users**, otherwise Google blocks the
+browser flow with `Error 403: access_denied`.
+
 ### Drive OAuth setup (first-time only)
 
 1. Create a **Desktop app** OAuth 2.0 client ID in your project:
