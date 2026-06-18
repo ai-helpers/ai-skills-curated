@@ -76,6 +76,30 @@ make auth-verify
 make run
 ```
 
+## Auth: Two separate credentials
+
+This project uses a **split auth** model:
+
+| Credential | Purpose | Setup |
+|---|---|---|
+| ADC (`~/.config/gcloud/...`) | Vertex AI tools | `make auth-adc` |
+| Drive OAuth token (`env/drive-oauth-token.json`) | `drive-list_recent_files` | `make auth-drive` |
+
+### Drive OAuth setup (first-time only)
+
+1. Create a **Desktop app** OAuth 2.0 client ID in your project:
+   https://console.cloud.google.com/auth/overview/create?project=YOUR_PROJECT_ID
+2. Download the JSON → save as `env/drive-oauth-client.json`
+3. **Add yourself as a test user** (required while app is in Testing mode):
+   - Go to https://console.cloud.google.com/auth/clients?project=YOUR_PROJECT_ID
+   - Click the **"Audience"** tab → **"Test users"** → **"+ Add Users"**
+   - Add your Google account email → Save
+4. Run `make auth-drive` — a browser window opens; approve the Drive permission
+
+> If you see `Error 403: access_denied` in the browser, step 3 was skipped or
+> not saved yet. Re-add your email and retry. You do **not** need to submit the
+> app for Google review.
+
 ## Setup Guide
 
 See the [gcp-agent-bootstrap-showcase](https://github.com/data-engineering-helpers/gcp-agent-bootstrap-showcase) repository for complete, step-by-step instructions.
@@ -86,21 +110,22 @@ See the [gcp-agent-bootstrap-showcase](https://github.com/data-engineering-helpe
 
 ```bash
 make setup                                         # One-time setup
-make run                                          # Start MCP server
-make auth-adc                                     # Refresh ADC for Vertex AI
-make auth-drive                                   # Refresh the local Drive OAuth token
-make auth-verify                                  # Verify authentication
-make gcp-verify                                   # Verify GCP setup
-gcloud config set project YOUR-PROJECT-ID        # Set GCP project
+make init                                          # Create Python venv
+make auth-adc                                      # ADC for Vertex AI
+make auth-drive                                    # Drive OAuth token
+make auth-verify                                   # Verify both auth paths
+make run                                           # Start MCP server
+make gcp-verify                                    # Verify GCP setup
+gcloud config set project YOUR-PROJECT-ID         # Set GCP project
 gcloud services enable aiplatform.googleapis.com drive.googleapis.com  # Enable Vertex AI + Drive API
 ```
 
 ### Tools Provided
 
 * `generate_text` — Generate text via Vertex AI
-* `list_available_models` — List available models
+* `list_available_models` — List available Vertex AI models
 * `extract_structured_data` — Extract structured info from text
-* `drive-list_recent_files` — List recent Google Drive files (metadata)
+* `drive-list_recent_files` — List recent Google Drive files (requires Drive OAuth)
 
 ## Implementation Notes
 
