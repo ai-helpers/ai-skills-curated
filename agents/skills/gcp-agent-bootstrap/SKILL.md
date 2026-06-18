@@ -69,6 +69,7 @@ cd gcp-agent-bootstrap-showcase
 make init
 make auth-adc
 make auth-drive
+# or: make auth-drive GCP_DRIVE_CLIENT_SECRETS=/path/to/downloaded-client.json
 make auth-verify
 make run
 ```
