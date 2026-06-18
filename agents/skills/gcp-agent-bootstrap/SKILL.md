@@ -44,7 +44,7 @@ Use this skill when:
 
 ## Problem Context
 
-The Copilot CLI Drive MCP has a known issue where authentication credentials fail to attach after reauth. This skill provides a **workaround**: a local Python stdio MCP server that uses Google Cloud's Application Default Credentials (ADC) instead of OAuth tokens, eliminating credential-attachment issues entirely.
+The Copilot CLI Drive MCP has a known issue where authentication credentials fail to attach after reauth. This skill provides a **workaround**: a local Python stdio MCP server that uses Google Cloud's Application Default Credentials (ADC) for Vertex AI and a separate local Google OAuth token for Drive, avoiding credential-attachment issues and blocked Drive scopes.
 
 See [GitHub Issue #3838](https://github.com/github/copilot-cli/issues/3838) for details.
 
@@ -55,8 +55,7 @@ See [GitHub Issue #3838](https://github.com/github/copilot-cli/issues/3838) for 
 
 # 2. Authenticate
 gcloud auth login
-gcloud auth application-default login \
-  --scopes=https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/drive.metadata.readonly
+gcloud auth application-default login --scopes=https://www.googleapis.com/auth/cloud-platform
 
 # 3. Create/set GCP project
 gcloud config set project YOUR-PROJECT-ID
@@ -69,6 +68,7 @@ git clone https://github.com/data-engineering-helpers/gcp-agent-bootstrap-showca
 cd gcp-agent-bootstrap-showcase
 make init
 make auth-adc
+make auth-drive
 make auth-verify
 make run
 ```
@@ -84,7 +84,8 @@ See the [gcp-agent-bootstrap-showcase](https://github.com/data-engineering-helpe
 ```bash
 make setup                                         # One-time setup
 make run                                          # Start MCP server
-make auth-adc                                     # Refresh ADC with Drive metadata scope
+make auth-adc                                     # Refresh ADC for Vertex AI
+make auth-drive                                   # Refresh the local Drive OAuth token
 make auth-verify                                  # Verify authentication
 make gcp-verify                                   # Verify GCP setup
 gcloud config set project YOUR-PROJECT-ID        # Set GCP project
