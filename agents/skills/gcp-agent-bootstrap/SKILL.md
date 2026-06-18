@@ -70,6 +70,8 @@ make init
 make auth-adc
 make auth-drive
 # or: make auth-drive GCP_DRIVE_CLIENT_SECRETS=/path/to/downloaded-client.json
+# Google Auth Platform: https://console.cloud.google.com/auth/overview
+# Create OAuth client: https://console.cloud.google.com/auth/overview/create?project=YOUR_PROJECT_ID
 make auth-verify
 make run
 ```
