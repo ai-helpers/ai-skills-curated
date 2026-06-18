@@ -67,7 +67,10 @@ gcloud services enable aiplatform.googleapis.com drive.googleapis.com
 # 5. Clone and run
 git clone https://github.com/data-engineering-helpers/gcp-agent-bootstrap-showcase.git
 cd gcp-agent-bootstrap-showcase
-make init && make run
+make init
+make auth-adc
+make auth-verify
+make run
 ```
 
 ## Setup Guide
@@ -81,9 +84,9 @@ See the [gcp-agent-bootstrap-showcase](https://github.com/data-engineering-helpe
 ```bash
 make setup                                         # One-time setup
 make run                                          # Start MCP server
+make auth-adc                                     # Refresh ADC with Drive metadata scope
 make auth-verify                                  # Verify authentication
 make gcp-verify                                   # Verify GCP setup
-gcloud auth application-default login --scopes=https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/drive.metadata.readonly  # Refresh ADC with Drive metadata scope
 gcloud config set project YOUR-PROJECT-ID        # Set GCP project
 gcloud services enable aiplatform.googleapis.com drive.googleapis.com  # Enable Vertex AI + Drive API
 ```
