@@ -2,7 +2,7 @@
 name: gcp-agent-bootstrap
 description: Bootstrap Google Cloud Platform (GCP) projects and set up Python stdio MCP servers to access Vertex AI and other GCP services. Use for GCP project initialization, API enablement, authentication setup, and MCP server configuration.
 license: MIT
-compatibility: "Requires: gcloud CLI, Python 3.10+, uv"
+compatibility: "Requires: gcloud CLI, Python 3.10+, uv, Copilot CLI MCP support"
 metadata:
   author: ai-helpers
   version: "0.1.0"
@@ -55,13 +55,14 @@ See [GitHub Issue #3838](https://github.com/github/copilot-cli/issues/3838) for 
 
 # 2. Authenticate
 gcloud auth login
-gcloud auth application-default login
+gcloud auth application-default login \
+  --scopes=https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/drive.metadata.readonly
 
 # 3. Create/set GCP project
 gcloud config set project YOUR-PROJECT-ID
 
 # 4. Enable APIs
-gcloud services enable aiplatform.googleapis.com
+gcloud services enable aiplatform.googleapis.com drive.googleapis.com
 
 # 5. Clone and run
 git clone https://github.com/data-engineering-helpers/gcp-agent-bootstrap-showcase.git
@@ -82,9 +83,9 @@ make setup                                         # One-time setup
 make run                                          # Start MCP server
 make auth-verify                                  # Verify authentication
 make gcp-verify                                   # Verify GCP setup
-gcloud auth application-default login             # Refresh ADC
+gcloud auth application-default login --scopes=https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/drive.metadata.readonly  # Refresh ADC with Drive metadata scope
 gcloud config set project YOUR-PROJECT-ID        # Set GCP project
-gcloud services enable aiplatform.googleapis.com  # Enable Vertex AI API
+gcloud services enable aiplatform.googleapis.com drive.googleapis.com  # Enable Vertex AI + Drive API
 ```
 
 ### Tools Provided
@@ -92,6 +93,15 @@ gcloud services enable aiplatform.googleapis.com  # Enable Vertex AI API
 * `generate_text` — Generate text via Vertex AI
 * `list_available_models` — List available models
 * `extract_structured_data` — Extract structured info from text
+* `drive-list_recent_files` — List recent Google Drive files (metadata)
+
+## Implementation Notes
+
+The showcase now relies on the official Python MCP runtime (`FastMCP`) over stdio, launched with:
+
+```bash
+.venv/bin/python -m gcp_agent_bootstrap
+```
 
 ## Resources
 
