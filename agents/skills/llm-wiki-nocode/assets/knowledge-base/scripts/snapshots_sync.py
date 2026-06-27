@@ -67,7 +67,8 @@ def upsert_base_snapshot_table(base_md_path: Path, snapshot_path: Path, date_str
     lines = text.splitlines()
 
     section_header = "## Snapshots"
-    table_header = "| Date | Snapshot |"
+    table_header = "| Timestamp | Snapshot |"
+    legacy_table_header = "| Date | Snapshot |"
     table_separator = "|---|---|"
     row = f"| {date_str} | [{snapshot_path.name}](../snapshots/{snapshot_path.name}) |"
 
@@ -88,7 +89,7 @@ def upsert_base_snapshot_table(base_md_path: Path, snapshot_path: Path, date_str
 
         header_idx = -1
         for i in range(section_idx + 1, next_section_idx):
-            if lines[i].strip() == table_header:
+            if lines[i].strip() in {table_header, legacy_table_header}:
                 header_idx = i
                 break
 
@@ -100,6 +101,10 @@ def upsert_base_snapshot_table(base_md_path: Path, snapshot_path: Path, date_str
             lines[section_idx + 1 : section_idx + 1] = insertion
             changed = True
         else:
+            if lines[header_idx].strip() != table_header:
+                lines[header_idx] = table_header
+                changed = True
+
             separator_idx = header_idx + 1
             if separator_idx >= len(lines) or lines[separator_idx].strip() != table_separator:
                 lines.insert(separator_idx, table_separator)

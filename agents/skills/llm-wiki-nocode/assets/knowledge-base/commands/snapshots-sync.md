@@ -14,7 +14,7 @@ Use this command to synchronize browser snapshot documents under `memory/bookmar
 1. Scan all snapshot files matching `memory/bookmarks/snapshots/*-YYYY-MM-DD.md`.
 2. Match each snapshot to its base markdown document in `memory/bookmarks/md/` using shared normalized basename.
 3. Update the snapshot document with a header link to its base markdown document.
-4. Update the base markdown document with a `## Snapshots` section and `Date | Snapshot` table.
+4. Update the base markdown document with a `## Snapshots` section and `Timestamp | Snapshot` table.
 5. Add one table row per snapshot if missing.
 
 ## Command
