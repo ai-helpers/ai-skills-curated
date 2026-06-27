@@ -4,6 +4,16 @@ import os
 import json
 from datetime import datetime
 
+
+def escape_md_table_cell(value):
+    return (
+        value.replace("\\", "\\\\")
+        .replace("|", "\\|")
+        .replace("\n", " ")
+        .replace("\r", " ")
+        .strip()
+    )
+
 def classify_tab(title, url):
     url_lower = url.lower()
     # 1. Email & Communication
@@ -140,7 +150,9 @@ def main():
             md_lines.append("| # | Title | URL |")
             md_lines.append("|---|-------|-----|")
             for t in cat_tabs:
-                md_lines.append(f"| {t['index']} | {t['title']} | {t['url']} |")
+                safe_title = escape_md_table_cell(t["title"])
+                safe_url = escape_md_table_cell(t["url"])
+                md_lines.append(f"| {t['index']} | {safe_title} | {safe_url} |")
             md_lines.append("")
         md_lines.append("---")
         md_lines.append("")
