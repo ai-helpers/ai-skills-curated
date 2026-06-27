@@ -8,7 +8,7 @@ convert:
 	uv run python scripts/ipynb-to-md.py "$(NOTEBOOK)" --name-mode exact --clone-to memory/llm-wiki/raw && uv run python scripts/wiki-ingest.py scan
 
 convert-main:
-	uv run python scripts/ipynb-to-md.py "notebooks/05 - DKT - Main.ipynb" --output-dir memory/bookmarks/md
+	uv run python scripts/ipynb-to-md.py "notebooks/05 - Main.ipynb" --output-dir memory/bookmarks/md
 
 convert-notebooks:
 	uv run python scripts/ipynb-to-md.py notebooks --output-dir memory/bookmarks/md

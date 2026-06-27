@@ -41,4 +41,4 @@ Use this command to capture your currently open Chrome browser tabs and save the
 - Organize tabs into logical categories (Google Services, AWS, GitHub, etc.).
 - Include a table of contents for easy navigation.
 - Commit directly to `main` without feature branches.
-- The bookmark-manager skill handles the core functionality.
+- The public `llm-wiki-nocode` skill handles the core functionality.

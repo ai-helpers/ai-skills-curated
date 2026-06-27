@@ -1,6 +1,6 @@
 # Copilot instructions
 
-This repository is a private knowledge base for visited web sites and related context. It is organized around Chrome profiles and the topics they track.
+This repository is a knowledge base for visited web sites and related context. It is organized around Chrome profiles and the topics they track.
 
 ## Core conventions
 
@@ -20,9 +20,7 @@ This repository is a private knowledge base for visited web sites and related co
 
 ## Reusable automation
 
-- The `bookmark-manager` skill is the reusable entry point for browser tab lists and bookmark-style documents.
-- The `llm-wiki-nocode` skill is the reusable entry point for the repo-local wiki workflow under `memory/llm-wiki/`.
-- The `ipynb-to-md` skill is the reusable entry point for converting notebook sources into Markdown under `memory/bookmarks/md/`.
+- The public `llm-wiki-nocode` skill (`ai-helpers/ai-skills-curated`) is the reusable entry point for browser tab lists, notebook-to-Markdown conversion, and the repo-local wiki workflow.
 - Use `make convert NOTEBOOK=<path>` for exact-stem notebook conversion that also clones into `memory/llm-wiki/raw/` and refreshes the wiki index; if the raw clone is created separately, follow up with `make wiki-ingest`.
 - Future automation should include a small CLI for Markdown ToC updates, a GitHub Actions workflow to run it, a `Makefile`, and Markdown linting for `memory/bookmarks/md/`.
 
