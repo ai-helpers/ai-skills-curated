@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,8 +32,8 @@ def upsert_snapshot_header(snapshot_path: Path, base_md_path: Path) -> bool:
     if not lines:
         return False
 
-    base_link = f"../md/{base_md_path.name}"
-    header_line = f"**Base document:** [{base_md_path.stem}]({base_link})"
+    base_link = f"../md/{quote(base_md_path.name)}"
+    header_line = f"Base document: [{base_md_path.stem}]({base_link})"
 
     changed = False
     insert_idx = 1
@@ -40,7 +41,10 @@ def upsert_snapshot_header(snapshot_path: Path, base_md_path: Path) -> bool:
     date_line_idx = next((i for i, line in enumerate(lines) if line.startswith("**Date:**")), -1)
     if date_line_idx != -1:
         existing_idx = date_line_idx - 1
-        if existing_idx >= 0 and lines[existing_idx].startswith("**Base document:**"):
+        if existing_idx >= 0 and (
+            lines[existing_idx].startswith("**Base document:**")
+            or lines[existing_idx].startswith("Base document:")
+        ):
             if lines[existing_idx] != header_line:
                 lines[existing_idx] = header_line
                 changed = True
@@ -48,7 +52,9 @@ def upsert_snapshot_header(snapshot_path: Path, base_md_path: Path) -> bool:
             lines.insert(date_line_idx, header_line)
             changed = True
     else:
-        if len(lines) > 1 and lines[1].startswith("**Base document:**"):
+        if len(lines) > 1 and (
+            lines[1].startswith("**Base document:**") or lines[1].startswith("Base document:")
+        ):
             if lines[1] != header_line:
                 lines[1] = header_line
                 changed = True
@@ -70,7 +76,8 @@ def upsert_base_snapshot_table(base_md_path: Path, snapshot_path: Path, date_str
     table_header = "| Timestamp | Snapshot |"
     legacy_table_header = "| Date | Snapshot |"
     table_separator = "|---|---|"
-    row = f"| {date_str} | [{snapshot_path.name}](../snapshots/{snapshot_path.name}) |"
+    snapshot_link = f"../snapshots/{quote(snapshot_path.name)}"
+    row = f"| {date_str} | [{snapshot_path.name}]({snapshot_link}) |"
 
     changed = False
     section_idx = next((i for i, line in enumerate(lines) if line.strip() == section_header), -1)
