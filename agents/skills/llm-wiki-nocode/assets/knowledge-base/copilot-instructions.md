@@ -6,7 +6,7 @@ This repository is a private knowledge base for visited web sites and related co
 
 - Keep `notebooks/` intact; they are the historical source format and must not be deleted or rewritten as part of routine updates.
 - Use `memory/bookmarks/md/` for the curated Markdown knowledge base migrated from notebooks.
-- Use `memory/bookmarks/snapshots/` for dated captures of the current browser tab state, named like `05-dkt-main-YYYY-MM-DD.md`.
+- Use `memory/bookmarks/snapshots/` for dated captures of the current browser tab state, named like `05-main-profile-YYYY-MM-DD.md`.
 - Keep reusable context in `memory/` so long-lived knowledge can be referenced without inflating instructions.
 - Treat browser-tab snapshots as snapshots, not curated knowledge.
 - Preserve source order when converting tab lists unless the user asks otherwise.

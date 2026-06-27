@@ -87,9 +87,9 @@ When a repository follows session journaling, record activity under `memory/jour
 
 This skill includes reusable assets from a production knowledge-base repository:
 
-* `assets/dkt-bookmarks/Makefile`
-* `assets/dkt-bookmarks/scripts/`
-* `assets/dkt-bookmarks/commands/`
-* `assets/dkt-bookmarks/copilot-instructions.md`
+* `assets/knowledge-base/Makefile`
+* `assets/knowledge-base/scripts/`
+* `assets/knowledge-base/commands/`
+* `assets/knowledge-base/copilot-instructions.md`
 
 Use these as reference or copy-adapt templates for repositories implementing the same workflow.

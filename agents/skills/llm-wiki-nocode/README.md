@@ -15,4 +15,4 @@ npx skills add ai-helpers/ai-skills-curated llm-wiki-nocode --global
 ## Skill file
 
 * `agents/skills/llm-wiki-nocode/SKILL.md`
-* assets in `agents/skills/llm-wiki-nocode/assets/dkt-bookmarks/`
+* assets in `agents/skills/llm-wiki-nocode/assets/knowledge-base/`

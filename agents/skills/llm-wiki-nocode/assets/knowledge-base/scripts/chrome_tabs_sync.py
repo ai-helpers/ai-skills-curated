@@ -26,7 +26,7 @@ def classify_tab(title, url):
     elif "github.com" in url_lower:
         return "GitHub Repositories"
     # 7. Data Platforms & Tools
-    elif any(pattern in url_lower for pattern in ["atlassian.net", "atlassian.com", "collibra", "dktapp.cloud", "collibra.com", "collibra.be"]):
+    elif any(pattern in url_lower for pattern in ["atlassian.net", "atlassian.com", "collibra", "collibra.com", "collibra.be"]):
         return "Data Platforms & Tools"
     # 8. Articles & Reading
     elif any(pattern in url_lower for pattern in ["medium.com", "substack.com", "blogspot.com", "wikipedia.org", "dev.to", "github.io", "readthedocs", "towardsdatascience.com", "towardsdataengineering.com", "uber.com/blog"]):
@@ -45,7 +45,7 @@ def main():
     # Strip extension
     notebook_name, _ = os.path.splitext(notebook_file)
     
-    # Clean name for filename: e.g. "130 - DKT - Staff" -> "130-dkt-staff"
+    # Clean name for filename: e.g. "130 - Team - Staff" -> "130-team-staff"
     clean_name = notebook_name.lower().strip()
     # Replace " - " with "-"
     clean_name = clean_name.replace(" - ", "-")

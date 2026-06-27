@@ -28,11 +28,11 @@ Use this command to capture your currently open Chrome browser tabs and save the
 
 ## Example
 
-- **Selected notebook**: `50 - Personal and DKT prod.ipynb`
-- **Processed basename**: `50-personal-and-dkt-prod`
+- **Selected notebook**: `50 - Personal and Work.ipynb`
+- **Processed basename**: `50-personal-and-work`
 - **Date**: `2026-06-27`
-- **Result file**: `memory/bookmarks/snapshots/50-personal-and-dkt-prod-2026-06-27.md`
-- **Command**: `make tabs-sync NOTEBOOK="notebooks/50 - Personal and DKT prod.ipynb"`
+- **Result file**: `memory/bookmarks/snapshots/50-personal-and-work-2026-06-27.md`
+- **Command**: `make tabs-sync NOTEBOOK="notebooks/50 - Personal and Work.ipynb"`
 
 ## Rules
 
