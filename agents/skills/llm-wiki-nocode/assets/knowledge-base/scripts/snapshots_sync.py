@@ -33,33 +33,49 @@ def upsert_snapshot_header(snapshot_path: Path, base_md_path: Path) -> bool:
         return False
 
     base_link = f"../md/{quote(base_md_path.name)}"
-    header_line = f"Base document: [{base_md_path.stem}]({base_link})"
+    base_line = f"- Base document: [{base_md_path.stem}]({base_link})"
 
     changed = False
-    insert_idx = 1
 
-    date_line_idx = next((i for i, line in enumerate(lines) if line.startswith("**Date:**")), -1)
-    if date_line_idx != -1:
-        existing_idx = date_line_idx - 1
-        if existing_idx >= 0 and (
-            lines[existing_idx].startswith("**Base document:**")
-            or lines[existing_idx].startswith("Base document:")
-        ):
-            if lines[existing_idx] != header_line:
-                lines[existing_idx] = header_line
-                changed = True
-        else:
-            lines.insert(date_line_idx, header_line)
+    date_idx = next((i for i, line in enumerate(lines) if line.startswith("**Date:**")), -1)
+    profile_idx = next((i for i, line in enumerate(lines) if line.startswith("**Profile:**")), -1)
+    total_idx = next((i for i, line in enumerate(lines) if line.startswith("**Total Tabs:**")), -1)
+
+    if date_idx != -1 and profile_idx != -1 and total_idx != -1:
+        date_value = lines[date_idx].replace("**Date:**", "").strip()
+        profile_value = lines[profile_idx].replace("**Profile:**", "").strip()
+        total_value = lines[total_idx].replace("**Total Tabs:**", "").strip()
+
+        header_start = 1
+        header_end = total_idx + 1
+        new_header = [
+            base_line,
+            f"- Date: {date_value}",
+            f"- Profile: {profile_value}",
+            f"- Total Tabs: {total_value}",
+            "",
+        ]
+        if lines[header_start:header_end] != new_header:
+            lines[header_start:header_end] = new_header
             changed = True
     else:
-        if len(lines) > 1 and (
-            lines[1].startswith("**Base document:**") or lines[1].startswith("Base document:")
-        ):
-            if lines[1] != header_line:
-                lines[1] = header_line
+        insert_idx = 1
+        existing_idx = next(
+            (
+                i
+                for i, line in enumerate(lines)
+                if line.startswith("**Base document:**")
+                or line.startswith("Base document:")
+                or line.startswith("- Base document:")
+            ),
+            -1,
+        )
+        if existing_idx != -1:
+            if lines[existing_idx] != base_line:
+                lines[existing_idx] = base_line
                 changed = True
         else:
-            lines.insert(insert_idx, header_line)
+            lines.insert(insert_idx, base_line)
             changed = True
 
     if changed:
