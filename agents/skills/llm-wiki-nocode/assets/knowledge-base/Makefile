@@ -1,4 +1,4 @@
-.PHONY: init convert convert-main convert-notebooks tabs-sync wiki-ingest
+.PHONY: init convert convert-main convert-notebooks tabs-sync snapshots-sync wiki-ingest
 
 init:
 	uv sync
@@ -16,6 +16,9 @@ convert-notebooks:
 tabs-sync:
 	@test -n "$(NOTEBOOK)" || (echo "NOTEBOOK is required" && exit 1)
 	python3 scripts/chrome_tabs_sync.py "$(NOTEBOOK)"
+
+snapshots-sync:
+	python3 scripts/snapshots_sync.py
 
 wiki-ingest:
 	uv run python scripts/wiki-ingest.py scan
