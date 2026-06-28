@@ -13,6 +13,16 @@ Unified public skill for:
 npx skills add ai-helpers/ai-skills-curated llm-wiki-nocode --global
 ```
 
+## Setup
+
+When adopting this skill, create a symlink for snapshot cross-linking:
+
+```bash
+cd memory/llm-wiki && ln -s ../bookmarks/snapshots snapshots
+```
+
+This enables wiki sources to link to browser tab snapshots and is excluded from wiki indexing.
+
 ## Skill file
 
 * `agents/skills/llm-wiki-nocode/SKILL.md`
