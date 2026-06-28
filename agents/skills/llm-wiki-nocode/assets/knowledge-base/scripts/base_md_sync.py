@@ -143,10 +143,24 @@ def title_block_end(markdown: str) -> int:
         return 0
 
     end = 0
-    if len(lines) >= 2 and re.fullmatch(r"[=-]{3,}\s*", lines[1]):
-        end = 2
-    elif re.match(r"^#\s+", lines[0]):
-        end = 1
+    # Keep YAML frontmatter at the top when present.
+    if lines[0].strip() == "---":
+        frontmatter_end = 1
+        while frontmatter_end < len(lines) and lines[frontmatter_end].strip() != "---":
+            frontmatter_end += 1
+        if frontmatter_end < len(lines):
+            end = frontmatter_end + 1
+        else:
+            end = len(lines)
+
+    while end < len(lines) and not lines[end].strip():
+        end += 1
+
+    # Place ToC after the first visible page heading when present.
+    if end + 1 < len(lines) and re.fullmatch(r"[=-]{3,}\s*", lines[end + 1]):
+        end += 2
+    elif end < len(lines) and re.match(r"^#\s+", lines[end]):
+        end += 1
 
     while end < len(lines) and not lines[end].strip():
         end += 1
