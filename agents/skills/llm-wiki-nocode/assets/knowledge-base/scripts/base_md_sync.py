@@ -129,7 +129,8 @@ def render_toc(headings: list[tuple[int, str]]) -> str:
         return ""
 
     base_level = min(level for level, _ in headings)
-    lines = [TOC_START, "## Table of contents", ""]
+    toc_heading = "#" * base_level
+    lines = [TOC_START, f"{toc_heading} Table of contents", ""]
     for level, link in headings:
         indent = "  " * (level - base_level)
         lines.append(f"{indent}- {link}")
@@ -137,7 +138,7 @@ def render_toc(headings: list[tuple[int, str]]) -> str:
     return "\n".join(lines)
 
 
-def title_block_end(markdown: str) -> int:
+def intro_block_end(markdown: str) -> int:
     lines = markdown.splitlines()
     if not lines:
         return 0
@@ -155,15 +156,6 @@ def title_block_end(markdown: str) -> int:
 
     while end < len(lines) and not lines[end].strip():
         end += 1
-
-    # Place ToC after the first visible page heading when present.
-    if end + 1 < len(lines) and re.fullmatch(r"[=-]{3,}\s*", lines[end + 1]):
-        end += 2
-    elif end < len(lines) and re.match(r"^#\s+", lines[end]):
-        end += 1
-
-    while end < len(lines) and not lines[end].strip():
-        end += 1
     return end
 
 
@@ -175,7 +167,7 @@ def rewrite_markdown(markdown: str) -> str:
         return clean
 
     lines = clean.splitlines()
-    split_index = title_block_end(clean)
+    split_index = intro_block_end(clean)
     prefix = "\n".join(lines[:split_index]).rstrip()
     suffix = "\n".join(lines[split_index:]).strip()
 
