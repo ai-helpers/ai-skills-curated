@@ -41,6 +41,7 @@ This repository is a knowledge base for visited web sites and related context. I
 - Follow `memory/llm-wiki/wiki/index.md`, `memory/llm-wiki/wiki/log.md`, and the pages under `memory/llm-wiki/wiki/` as the wiki source of truth.
 - Use standard GitHub Markdown links (`[]()`) inside wiki pages and generated wiki catalogs.
 - Keep all wiki artifacts inside `memory/llm-wiki/`.
+- **Snapshots symlink:** Create `memory/llm-wiki/snapshots/ → ../bookmarks/snapshots/` symlink to enable wiki sources to link to browser tab snapshots via relative paths. This symlink is not indexed by wiki-ingest (which only scans `memory/llm-wiki/raw/`).
 
 ## Journal reporting
 

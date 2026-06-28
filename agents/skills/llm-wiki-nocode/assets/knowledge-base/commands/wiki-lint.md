@@ -20,3 +20,4 @@ Run health checks on `memory/llm-wiki/` and save the report under `memory/llm-wi
 - Use deterministic checks first.
 - Then perform semantic review.
 - Do not modify wiki pages during linting.
+- Skip snapshot symlink validation: `memory/llm-wiki/snapshots/` is a symlink to `memory/bookmarks/snapshots/`. Links like `../snapshots/05-dkt-main-2026-06-27.md` are valid via this symlink and should not be flagged as broken.
