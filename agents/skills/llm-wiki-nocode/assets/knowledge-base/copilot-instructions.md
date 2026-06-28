@@ -15,14 +15,14 @@ This repository is a knowledge base for visited web sites and related context. I
 
 - Prefer plain Markdown for new knowledge documents.
 - When updating Markdown files, keep a table of contents in sync.
-- Use `gh-md-toc` to generate or replace the ToC.
+- Use `make base-md-sync` (backed by `scripts/base_md_sync.py`) to replace the generated ToC idempotently.
 - Batch updates are preferred when the same change applies to many documents.
 
 ## Reusable automation
 
 - The public `llm-wiki-nocode` skill (`ai-helpers/ai-skills-curated`) is the reusable entry point for browser tab lists, notebook-to-Markdown conversion, and the repo-local wiki workflow.
 - Use `make convert NOTEBOOK=<path>` for exact-stem notebook conversion that also clones into `memory/llm-wiki/raw/` and refreshes the wiki index; if the raw clone is created separately, follow up with `make wiki-ingest`.
-- Future automation should include a small CLI for Markdown ToC updates, a GitHub Actions workflow to run it, a `Makefile`, and Markdown linting for `memory/bookmarks/md/`.
+- Use `make base-md-sync` after manual edits to curated Markdown so the ToC, `memory/llm-wiki/raw/`, and the wiki index stay aligned.
 
 ## Notebook conversion
 

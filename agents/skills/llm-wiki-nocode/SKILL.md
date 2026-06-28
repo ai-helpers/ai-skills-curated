@@ -31,7 +31,7 @@ Use this unified skill to manage the end-to-end knowledge workflow:
 * Write dated tab snapshots under `memory/bookmarks/snapshots/` as `*-YYYY-MM-DD.md`.
 * Keep reusable context under `memory/`.
 * Preserve source order unless the user explicitly asks for sorting/grouping.
-* Prefer plain Markdown and keep table of contents sections synchronized when present.
+* Prefer plain Markdown and keep table of contents sections synchronized with `make base-md-sync`.
 
 ## Browser tab capture
 
@@ -58,12 +58,18 @@ make init
 make convert NOTEBOOK=<path-to-ipynb>
 ```
 
-This keeps exact filename stem naming, writes to `memory/bookmarks/md/`, clones to `memory/llm-wiki/raw/`, and refreshes the wiki index.
+This keeps exact filename stem naming, writes to `memory/bookmarks/md/`, refreshes the generated table of contents, clones to `memory/llm-wiki/raw/`, and refreshes the wiki index.
 
 For separate raw cloning flows, run:
 
 ```bash
 make wiki-ingest
+```
+
+For manual edits to curated Markdown, run:
+
+```bash
+make base-md-sync
 ```
 
 ## Wiki workflow
@@ -88,6 +94,8 @@ When a repository follows session journaling, record activity under `memory/jour
 This skill includes reusable assets from a production knowledge-base repository:
 
 * `assets/knowledge-base/Makefile`
+* `assets/knowledge-base/.github/actions/install-project/action.yml`
+* `assets/knowledge-base/.github/workflows/base-md-sync.yml`
 * `assets/knowledge-base/scripts/`
 * `assets/knowledge-base/commands/`
 * `assets/knowledge-base/copilot-instructions.md`

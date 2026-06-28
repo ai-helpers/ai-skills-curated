@@ -7,16 +7,16 @@ trigger: user_args
 
 # Notebook Convert Command
 
-Convert a notebook-style file from `notebooks/` into Markdown, then clone the result into both `memory/bookmarks/md/` and `memory/llm-wiki/raw/`.
-After the conversion, suggest running `/wiki-ingest` so the new raw document is indexed immediately.
+Convert a notebook-style file from `notebooks/` into Markdown, then run the same downstream sync used for manual Markdown edits.
 
 ## Workflow
 
 1. Convert the notebook with the same stem name, replacing `.ipynb` with `.md`.
 2. Write the Markdown file to `memory/bookmarks/md/`.
-3. Clone the same Markdown file into `memory/llm-wiki/raw/`.
-4. Refresh the wiki index with `make wiki-ingest`.
-5. Use `make convert NOTEBOOK=<path>` or `uv run python scripts/ipynb-to-md.py <path> --name-mode exact --clone-to memory/llm-wiki/raw` followed by `make wiki-ingest`.
+3. Refresh or replace the generated table of contents in the base Markdown document.
+4. Clone the same Markdown file into `memory/llm-wiki/raw/`.
+5. Refresh the wiki index with `make wiki-ingest`.
+6. Use `make convert NOTEBOOK=<path>`, which now reuses `make base-md-sync` for the downstream sync.
 
 ## Rules
 

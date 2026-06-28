@@ -1,0 +1,72 @@
+name: Sync base markdown
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "memory/bookmarks/md/**/*.md"
+      - "memory/bookmarks/md/*.md"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: base-md-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install project
+        uses: ./.github/actions/install-project
+
+      - name: Collect changed base markdown files
+        id: changed
+        shell: bash
+        run: |
+          changed_file=.github/base-md-sync.paths
+          before_sha="${{ github.event.before }}"
+          zero_sha="0000000000000000000000000000000000000000"
+
+          if [ "$before_sha" = "$zero_sha" ]; then
+            git ls-files "memory/bookmarks/md/*.md" "memory/bookmarks/md/**/*.md" > "$changed_file"
+          else
+            git diff --name-only --diff-filter=ACMR "$before_sha" "$GITHUB_SHA" -- "memory/bookmarks/md/*.md" "memory/bookmarks/md/**/*.md" > "$changed_file"
+          fi
+
+          grep -v '^memory/bookmarks/md/README\.md$' "$changed_file" > "${changed_file}.tmp" || true
+          mv "${changed_file}.tmp" "$changed_file"
+
+          if [ -s "$changed_file" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sync base markdown and wiki
+        if: steps.changed.outputs.has_changes == 'true'
+        shell: bash
+        run: make base-md-sync PATHS_FILE=.github/base-md-sync.paths
+
+      - name: Commit generated updates
+        if: steps.changed.outputs.has_changes == 'true'
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add memory/bookmarks/md memory/llm-wiki/raw memory/llm-wiki/wiki memory/llm-wiki/README.md
+          git commit -m "Sync base markdown ToC and wiki artifacts [skip ci]"
+          git push
