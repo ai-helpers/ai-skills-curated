@@ -61,7 +61,7 @@ If the user pivots mid-flow, pause the reporting sequence and execute the new re
 ## Chrome tab access
 
 - For implementation details and current operational guidance, use `memory/guides/chrome-browser-tab-fetcher-reader.md`.
-- **macOS AppleScript method (recommended on Mac):** use `make tabs-sync NOTEBOOK="<notebook_path>"` (which calls `scripts/chrome_tabs_sync.py`) to fetch open Chrome tabs quickly with no remote-debugging setup.
+- **macOS AppleScript method (recommended on Mac):** use `make tabs-sync NOTEBOOK="<notebook_path>"` (which calls `scripts/chrome_tabs_sync.py` and then `scripts/snapshots_sync.py`) to fetch open Chrome tabs and keep snapshot/base-document links synchronized with no remote-debugging setup.
 - **Cross-platform MCP method:** use `chrome-devtools-mcp` only when remote-debugging is explicitly enabled for the target browser instance/profile.
 - For the MCP method, follow https://developer.chrome.com/docs/devtools/agents/use-cases/auto-connect and enable **Allow remote debugging for this browser instance** at `chrome://inspect/#remote-debugging`.
 - MCP-based tab inspection can consume significant resources on both terminal and browser; close other applications before large tab reads when possible.

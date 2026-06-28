@@ -25,6 +25,7 @@ convert-notebooks:
 tabs-sync:
 	@test -n "$(NOTEBOOK)" || (echo "NOTEBOOK is required" && exit 1)
 	python3 scripts/chrome_tabs_sync.py "$(NOTEBOOK)"
+	$(MAKE) snapshots-sync
 
 snapshots-sync:
 	python3 scripts/snapshots_sync.py

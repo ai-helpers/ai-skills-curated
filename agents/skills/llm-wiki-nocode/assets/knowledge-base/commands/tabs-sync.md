@@ -24,7 +24,8 @@ Use this command to capture your currently open Chrome browser tabs and save the
    - Metadata header (date, profile, total tabs).
    - Table of Contents organized by category.
    - Categorized tab tables with title and URL.
-5. **Commit**: Commit and push to `main` branch.
+5. **Snapshot Linking Sync**: Run `make snapshots-sync` to ensure the snapshot has a base-document link and the base markdown file has an up-to-date `Snapshots` section/table.
+6. **Commit**: Commit and push to `main` branch.
 
 ## Example
 
@@ -40,5 +41,6 @@ Use this command to capture your currently open Chrome browser tabs and save the
 - Preserve original URL and title text exactly as given by the browser.
 - Organize tabs into logical categories (Google Services, AWS, GitHub, etc.).
 - Include a table of contents for easy navigation.
+- Ensure each snapshot is linked from the related base markdown `Snapshots` section/table.
 - Commit directly to `main` without feature branches.
 - The public `llm-wiki-nocode` skill handles the core functionality.

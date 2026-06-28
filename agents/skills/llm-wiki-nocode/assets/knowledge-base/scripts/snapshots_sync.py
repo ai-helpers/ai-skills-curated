@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOTS_DIR = ROOT / "memory" / "bookmarks" / "snapshots"
 BASE_MD_DIR = ROOT / "memory" / "bookmarks" / "md"
 SNAPSHOT_DATE_RE = re.compile(r"^(?P<slug>.+)-(?P<date>\d{4}-\d{2}-\d{2})$")
+HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 
 
 def normalize_stem(value: str) -> str:
@@ -96,17 +97,27 @@ def upsert_base_snapshot_table(base_md_path: Path, snapshot_path: Path, date_str
     row = f"| {date_str} | [{snapshot_path.name}]({snapshot_link}) |"
 
     changed = False
-    section_idx = next((i for i, line in enumerate(lines) if line.strip() == section_header), -1)
+    section_idx = -1
+    section_header_value = section_header
+    for i, line in enumerate(lines):
+        match = HEADING_RE.match(line.strip())
+        if not match:
+            continue
+        heading_level, heading_title = match.groups()
+        if heading_title == "Snapshots":
+            section_idx = i
+            section_header_value = f"{heading_level} Snapshots"
+            break
 
     if section_idx == -1:
         if lines and lines[-1].strip():
             lines.append("")
-        lines.extend([section_header, "", table_header, table_separator, row])
+        lines.extend([section_header_value, "", table_header, table_separator, row])
         changed = True
     else:
         next_section_idx = len(lines)
         for i in range(section_idx + 1, len(lines)):
-            if lines[i].startswith("## "):
+            if HEADING_RE.match(lines[i].strip()):
                 next_section_idx = i
                 break
 
@@ -135,7 +146,7 @@ def upsert_base_snapshot_table(base_md_path: Path, snapshot_path: Path, date_str
 
             next_section_idx = len(lines)
             for i in range(header_idx + 1, len(lines)):
-                if lines[i].startswith("## "):
+                if HEADING_RE.match(lines[i].strip()):
                     next_section_idx = i
                     break
 
