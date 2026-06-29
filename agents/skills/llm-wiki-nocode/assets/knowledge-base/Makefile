@@ -1,4 +1,4 @@
-.PHONY: init convert convert-main convert-notebooks tabs-sync snapshots-sync base-md-sync wiki-ingest
+.PHONY: init convert convert-main convert-notebooks tabs-sync snapshots-sync base-md-sync wiki-ingest rename
 
 init:
 	uv sync
@@ -12,9 +12,9 @@ convert:
 	rm -f "$$paths_file"
 
 convert-main:
-	uv run python scripts/ipynb-to-md.py "notebooks/05 - Main.ipynb" --output-dir memory/bookmarks/md --name-mode exact
+	uv run python scripts/ipynb-to-md.py "notebooks/05 - DKT - Main.ipynb" --output-dir memory/bookmarks/md --name-mode exact
 	@paths_file=$$(mktemp); \
-	printf '%s\n' "memory/bookmarks/md/05 - Main.md" > "$$paths_file"; \
+	printf '%s\n' "memory/bookmarks/md/05 - DKT - Main.md" > "$$paths_file"; \
 	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \
 	rm -f "$$paths_file"
 
@@ -25,6 +25,16 @@ convert-notebooks:
 tabs-sync:
 	@test -n "$(NOTEBOOK)" || (echo "NOTEBOOK is required" && exit 1)
 	python3 scripts/chrome_tabs_sync.py "$(NOTEBOOK)"
+	$(MAKE) snapshots-sync
+
+rename:
+	@test -n "$(SRC)" || (echo "SRC is required" && exit 1)
+	@test -n "$(DST)" || (echo "DST is required" && exit 1)
+	python3 scripts/rename_md.py "$(SRC)" "$(DST)"
+	@paths_file=$$(mktemp); \
+	printf '%s\n' "$(DST)" > "$$paths_file"; \
+	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \
+	rm -f "$$paths_file"
 	$(MAKE) snapshots-sync
 
 snapshots-sync:

@@ -97,7 +97,7 @@ This skill includes reusable assets from a production knowledge-base repository:
 * `assets/knowledge-base/.github/actions/install-project/action.yml`
 * `assets/knowledge-base/.github/workflows/base-md-sync.yml`
 * `assets/knowledge-base/scripts/`
-* `assets/knowledge-base/commands/`
+* `assets/knowledge-base/commands/` — slash commands: `base-md-sync`, `convert`, `rename`, `snapshots-sync`, `tabs-sync`, `wiki-ingest`, `wiki-lint`, `wiki-query`
 * `assets/knowledge-base/copilot-instructions.md`
 
 Use these as reference or copy-adapt templates for repositories implementing the same workflow.

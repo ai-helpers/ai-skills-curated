@@ -23,6 +23,7 @@ This repository is a knowledge base for visited web sites and related context. I
 - The public `llm-wiki-nocode` skill (`ai-helpers/ai-skills-curated`) is the reusable entry point for browser tab lists, notebook-to-Markdown conversion, and the repo-local wiki workflow.
 - Use `make convert NOTEBOOK=<path>` for exact-stem notebook conversion that also clones into `memory/llm-wiki/raw/` and refreshes the wiki index; if the raw clone is created separately, follow up with `make wiki-ingest`.
 - Use `make base-md-sync` after manual edits to curated Markdown so the ToC, `memory/llm-wiki/raw/`, and the wiki index stay aligned.
+- Use `make rename SRC="<old-path>" DST="<new-path>"` (backed by `scripts/rename_md.py`) to rename or move a base MD document and automatically update all cross-references in `memory/bookmarks/md/`, `memory/bookmarks/snapshots/`, and `memory/llm-wiki/raw/`.
 
 ## Notebook conversion
 
