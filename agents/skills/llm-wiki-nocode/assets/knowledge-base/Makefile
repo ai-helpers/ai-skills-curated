@@ -7,19 +7,19 @@ convert:
 	@test -n "$(NOTEBOOK)" || (echo "NOTEBOOK is required" && exit 1)
 	uv run python scripts/ipynb-to-md.py "$(NOTEBOOK)" --name-mode exact
 	@paths_file=$$(mktemp); \
-	printf '%s\n' "memory/bookmarks/md/$$(basename "$(NOTEBOOK)" .ipynb).md" > "$$paths_file"; \
+	printf '%s\n' "memory/kb/md/$$(basename "$(NOTEBOOK)" .ipynb).md" > "$$paths_file"; \
 	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \
 	rm -f "$$paths_file"
 
 convert-main:
-	uv run python scripts/ipynb-to-md.py "notebooks/05 - DKT - Main.ipynb" --output-dir memory/bookmarks/md --name-mode exact
+	uv run python scripts/ipynb-to-md.py "notebooks/05 - DKT - Main.ipynb" --output-dir memory/kb/md --name-mode exact
 	@paths_file=$$(mktemp); \
-	printf '%s\n' "memory/bookmarks/md/05 - DKT - Main.md" > "$$paths_file"; \
+	printf '%s\n' "memory/kb/md/05 - DKT - Main.md" > "$$paths_file"; \
 	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \
 	rm -f "$$paths_file"
 
 convert-notebooks:
-	uv run python scripts/ipynb-to-md.py notebooks --output-dir memory/bookmarks/md --name-mode exact
+	uv run python scripts/ipynb-to-md.py notebooks --output-dir memory/kb/md --name-mode exact
 	$(MAKE) base-md-sync
 
 tabs-sync:

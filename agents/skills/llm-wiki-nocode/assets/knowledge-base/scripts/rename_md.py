@@ -7,8 +7,8 @@ Usage:
 The script:
 1. Moves the source base MD file to the destination path.
 2. Renames the corresponding raw wiki clone in memory/llm-wiki/raw/ (if present).
-3. Updates all Markdown links in memory/bookmarks/md/ that reference the old filename.
-4. Updates all snapshot header links in memory/bookmarks/snapshots/ that reference the old filename.
+3. Updates all Markdown links in memory/kb/md/ that reference the old filename.
+4. Updates all snapshot header links in memory/kb/snapshots/ that reference the old filename.
 5. Prints a summary of every updated file.
 
 After running this script the caller should run:
@@ -26,8 +26,8 @@ from urllib.parse import quote, unquote
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_MD_DIR = ROOT / "memory" / "bookmarks" / "md"
-SNAPSHOTS_DIR = ROOT / "memory" / "bookmarks" / "snapshots"
+BASE_MD_DIR = ROOT / "memory" / "kb" / "md"
+SNAPSHOTS_DIR = ROOT / "memory" / "kb" / "snapshots"
 RAW_WIKI_DIR = ROOT / "memory" / "llm-wiki" / "raw"
 
 

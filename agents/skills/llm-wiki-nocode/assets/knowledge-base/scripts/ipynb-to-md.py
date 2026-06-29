@@ -63,7 +63,7 @@ def main() -> int:
     parser.add_argument("paths", nargs="+", help="Notebook files or directories")
     parser.add_argument(
         "--output-dir",
-        default="memory/bookmarks/md",
+        default="memory/kb/md",
         help="Directory where Markdown files will be written",
     )
     parser.add_argument(

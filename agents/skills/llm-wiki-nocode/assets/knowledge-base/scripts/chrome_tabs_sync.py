@@ -68,7 +68,7 @@ def main():
     # Current date
     date_str = datetime.now().strftime("%Y-%m-%d")
     output_filename = f"{clean_name}-{date_str}.md"
-    output_dir = "memory/bookmarks/snapshots"
+    output_dir = "memory/kb/snapshots"
     output_path = os.path.join(output_dir, output_filename)
 
     # 1. Fetch tabs using AppleScript

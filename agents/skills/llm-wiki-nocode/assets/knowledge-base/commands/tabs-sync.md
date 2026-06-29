@@ -16,7 +16,7 @@ Use this command to capture your currently open Chrome browser tabs and save the
    - Strip whitespace from the basename and convert to lowercase.
    - Append the current date in `YYYY-MM-DD` format.
    - Add `.md` file extension.
-   - Result: `memory/bookmarks/snapshots/<basename-YYYY-MM-DD>.md`
+   - Result: `memory/kb/snapshots/<basename-YYYY-MM-DD>.md`
 3. **Tab Capture**:
    - **On macOS (`darwin`):** Run `make tabs-sync NOTEBOOK="<notebook_path>"`, which calls the AppleScript extraction method via `scripts/chrome_tabs_sync.py` to retrieve `title` and `URL` for all open tabs across all Chrome windows instantly with zero extra dependencies.
    - **On Windows/Linux:** Retrieve all open tabs from Chrome via `chrome-devtools-mcp` server tools.
@@ -32,7 +32,7 @@ Use this command to capture your currently open Chrome browser tabs and save the
 - **Selected notebook**: `50 - Personal and Work.ipynb`
 - **Processed basename**: `50-personal-and-work`
 - **Date**: `2026-06-27`
-- **Result file**: `memory/bookmarks/snapshots/50-personal-and-work-2026-06-27.md`
+- **Result file**: `memory/kb/snapshots/50-personal-and-work-2026-06-27.md`
 - **Command**: `make tabs-sync NOTEBOOK="notebooks/50 - Personal and Work.ipynb"`
 
 ## Rules

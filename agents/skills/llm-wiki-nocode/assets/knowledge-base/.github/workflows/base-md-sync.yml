@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - "memory/bookmarks/md/**/*.md"
-      - "memory/bookmarks/md/*.md"
+      - "memory/kb/md/**/*.md"
+      - "memory/kb/md/*.md"
 
 permissions:
   contents: write
@@ -38,12 +38,12 @@ jobs:
           zero_sha="0000000000000000000000000000000000000000"
 
           if [ "$before_sha" = "$zero_sha" ]; then
-            git ls-files "memory/bookmarks/md/*.md" "memory/bookmarks/md/**/*.md" > "$changed_file"
+            git ls-files "memory/kb/md/*.md" "memory/kb/md/**/*.md" > "$changed_file"
           else
-            git diff --name-only --diff-filter=ACMR "$before_sha" "$GITHUB_SHA" -- "memory/bookmarks/md/*.md" "memory/bookmarks/md/**/*.md" > "$changed_file"
+            git diff --name-only --diff-filter=ACMR "$before_sha" "$GITHUB_SHA" -- "memory/kb/md/*.md" "memory/kb/md/**/*.md" > "$changed_file"
           fi
 
-          grep -v '^memory/bookmarks/md/README\.md$' "$changed_file" > "${changed_file}.tmp" || true
+          grep -v '^memory/kb/md/README\.md$' "$changed_file" > "${changed_file}.tmp" || true
           mv "${changed_file}.tmp" "$changed_file"
 
           if [ -s "$changed_file" ]; then
@@ -67,6 +67,6 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add memory/bookmarks/md memory/llm-wiki/raw memory/llm-wiki/wiki memory/llm-wiki/README.md
+          git add memory/kb/md memory/llm-wiki/raw memory/llm-wiki/wiki memory/llm-wiki/README.md
           git commit -m "Sync base markdown ToC and wiki artifacts [skip ci]"
           git push

@@ -12,7 +12,7 @@ Convert a notebook-style file from `notebooks/` into Markdown, then run the same
 ## Workflow
 
 1. Convert the notebook with the same stem name, replacing `.ipynb` with `.md`.
-2. Write the Markdown file to `memory/bookmarks/md/`.
+2. Write the Markdown file to `memory/kb/md/`.
 3. Refresh or replace the generated table of contents in the base Markdown document.
 4. Clone the same Markdown file into `memory/llm-wiki/raw/`.
 5. Refresh the wiki index with `make wiki-ingest`.

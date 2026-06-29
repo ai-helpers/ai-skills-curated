@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 
-DOCS_ROOT = Path("memory/bookmarks/md")
+DOCS_ROOT = Path("memory/kb/md")
 RAW_ROOT = Path("memory/llm-wiki/raw")
 TOC_START = "<!-- llm-wiki-nocode-toc:start -->"
 TOC_END = "<!-- llm-wiki-nocode-toc:end -->"
@@ -196,7 +196,7 @@ def sync_one(path: Path) -> tuple[bool, bool]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("paths", nargs="*", help="Base Markdown files or directories under memory/bookmarks/md/")
+    parser.add_argument("paths", nargs="*", help="Base Markdown files or directories under memory/kb/md/")
     parser.add_argument(
         "--paths-file",
         help="Text file listing one base Markdown path per line. Useful when paths contain spaces.",

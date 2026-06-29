@@ -27,8 +27,8 @@ Use this unified skill to manage the end-to-end knowledge workflow:
 ## Scope and conventions
 
 * Keep `notebooks/` intact; do not rewrite notebook sources during routine updates.
-* Write curated knowledge under `memory/bookmarks/md/`.
-* Write dated tab snapshots under `memory/bookmarks/snapshots/` as `*-YYYY-MM-DD.md`.
+* Write curated knowledge under `memory/kb/md/`.
+* Write dated tab snapshots under `memory/kb/snapshots/` as `*-YYYY-MM-DD.md`.
 * Keep reusable context under `memory/`.
 * Preserve source order unless the user explicitly asks for sorting/grouping.
 * Prefer plain Markdown and keep table of contents sections synchronized with `make base-md-sync`.
@@ -58,7 +58,7 @@ make init
 make convert NOTEBOOK=<path-to-ipynb>
 ```
 
-This keeps exact filename stem naming, writes to `memory/bookmarks/md/`, refreshes the generated table of contents, clones to `memory/llm-wiki/raw/`, and refreshes the wiki index.
+This keeps exact filename stem naming, writes to `memory/kb/md/`, refreshes the generated table of contents, clones to `memory/llm-wiki/raw/`, and refreshes the wiki index.
 
 For separate raw cloning flows, run:
 

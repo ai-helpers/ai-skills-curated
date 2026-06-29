@@ -5,8 +5,8 @@ This repository is a knowledge base for visited web sites and related context. I
 ## Core conventions
 
 - Keep `notebooks/` intact; they are the historical source format and must not be deleted or rewritten as part of routine updates.
-- Use `memory/bookmarks/md/` for the curated Markdown knowledge base migrated from notebooks.
-- Use `memory/bookmarks/snapshots/` for dated captures of the current browser tab state, named like `05-main-profile-YYYY-MM-DD.md`.
+- Use `memory/kb/md/` for the curated Markdown knowledge base migrated from notebooks.
+- Use `memory/kb/snapshots/` for dated captures of the current browser tab state, named like `05-main-profile-YYYY-MM-DD.md`.
 - Keep reusable context in `memory/` so long-lived knowledge can be referenced without inflating instructions.
 - Treat browser-tab snapshots as snapshots, not curated knowledge.
 - Preserve source order when converting tab lists unless the user asks otherwise.
@@ -23,11 +23,11 @@ This repository is a knowledge base for visited web sites and related context. I
 - The public `llm-wiki-nocode` skill (`ai-helpers/ai-skills-curated`) is the reusable entry point for browser tab lists, notebook-to-Markdown conversion, and the repo-local wiki workflow.
 - Use `make convert NOTEBOOK=<path>` for exact-stem notebook conversion that also clones into `memory/llm-wiki/raw/` and refreshes the wiki index; if the raw clone is created separately, follow up with `make wiki-ingest`.
 - Use `make base-md-sync` after manual edits to curated Markdown so the ToC, `memory/llm-wiki/raw/`, and the wiki index stay aligned.
-- Use `make rename SRC="<old-path>" DST="<new-path>"` (backed by `scripts/rename_md.py`) to rename or move a base MD document and automatically update all cross-references in `memory/bookmarks/md/`, `memory/bookmarks/snapshots/`, and `memory/llm-wiki/raw/`.
+- Use `make rename SRC="<old-path>" DST="<new-path>"` (backed by `scripts/rename_md.py`) to rename or move a base MD document and automatically update all cross-references in `memory/kb/md/`, `memory/kb/snapshots/`, and `memory/llm-wiki/raw/`.
 
 ## Notebook conversion
 
-- Convert iPython notebooks from `notebooks/` into Markdown documents under `memory/bookmarks/md/`.
+- Convert iPython notebooks from `notebooks/` into Markdown documents under `memory/kb/md/`.
 - Keep the original notebooks intact.
 - Prefer plain Markdown for durable notebook-derived content.
 - Use `uv` with `jupyter nbconvert --to markdown` for the conversion utility, with `make init` creating/updating the uv environment and lockfile.
@@ -42,7 +42,7 @@ This repository is a knowledge base for visited web sites and related context. I
 - Follow `memory/llm-wiki/wiki/index.md`, `memory/llm-wiki/wiki/log.md`, and the pages under `memory/llm-wiki/wiki/` as the wiki source of truth.
 - Use standard GitHub Markdown links (`[]()`) inside wiki pages and generated wiki catalogs.
 - Keep all wiki artifacts inside `memory/llm-wiki/`.
-- **Snapshots symlink:** Create `memory/llm-wiki/snapshots/ → ../bookmarks/snapshots/` symlink to enable wiki sources to link to browser tab snapshots via relative paths. This symlink is not indexed by wiki-ingest (which only scans `memory/llm-wiki/raw/`).
+- **Snapshots symlink:** Create `memory/llm-wiki/snapshots/ → ../kb/snapshots/` symlink to enable wiki sources to link to browser tab snapshots via relative paths. This symlink is not indexed by wiki-ingest (which only scans `memory/llm-wiki/raw/`).
 
 ## Journal reporting
 

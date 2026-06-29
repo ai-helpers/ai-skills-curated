@@ -9,8 +9,8 @@ from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SNAPSHOTS_DIR = ROOT / "memory" / "bookmarks" / "snapshots"
-BASE_MD_DIR = ROOT / "memory" / "bookmarks" / "md"
+SNAPSHOTS_DIR = ROOT / "memory" / "kb" / "snapshots"
+BASE_MD_DIR = ROOT / "memory" / "kb" / "md"
 SNAPSHOT_DATE_RE = re.compile(r"^(?P<slug>.+)-(?P<date>\d{4}-\d{2}-\d{2})$")
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 
