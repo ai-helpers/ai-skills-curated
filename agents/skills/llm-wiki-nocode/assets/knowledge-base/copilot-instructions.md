@@ -24,7 +24,7 @@ This repository is a knowledge base for visited web sites and related context. I
 - Use `make convert NOTEBOOK=<path>` for exact-stem notebook conversion that also clones into `memory/llm-wiki/raw/` and refreshes the wiki index; if the raw clone is created separately, follow up with `make wiki-ingest`.
 - Use `make base-md-sync` after manual edits to curated Markdown so the ToC, `memory/llm-wiki/raw/`, and the wiki index stay aligned.
 - Use `make rename SRC="<old-path>" DST="<new-path>"` (backed by `scripts/rename_md.py`) to rename or move a base MD document and automatically update all cross-references in `memory/kb/md/`, `memory/kb/snapshots/`, and `memory/llm-wiki/raw/`.
-- Use `make fix-home SRC="<file-path-1.md>" HOME_REPO="<new-git-repo>"` (backed by `scripts/fix_home_md.py`) to convert a local base MD document into a redirect to its canonical home repository while keeping the same path in that home repository.
+- Use `make fix-home SRC="<file-path-1.md>" HOME_REPO="<new-git-repo>"` (backed by `scripts/fix_home_md.py`) to convert a local base MD document into a redirect to its canonical home repository while keeping the same path in that home repository. Canonical home documents must omit the `Snapshots` section (personal/private tabs), while redirect documents in the source repository may keep their local snapshots section.
 
 ## Notebook conversion
 

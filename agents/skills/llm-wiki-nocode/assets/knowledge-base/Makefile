@@ -40,7 +40,7 @@ rename:
 fix-home:
 	@test -n "$(SRC)" || (echo "SRC is required" && exit 1)
 	@test -n "$(HOME_REPO)" || (echo "HOME_REPO is required" && exit 1)
-	python3 scripts/fix_home_md.py "$(SRC)" "$(HOME_REPO)"
+	python3 scripts/fix_home_md.py "$(SRC)" "$(HOME_REPO)" $(if $(HOME_EXPORT),--export-home "$(HOME_EXPORT)",)
 	@paths_file=$$(mktemp); \
 	printf '%s\n' "$(SRC)" > "$$paths_file"; \
 	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \

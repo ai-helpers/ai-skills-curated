@@ -2,7 +2,7 @@
 """Redirect a local KB base document to its canonical home repository.
 
 Usage:
-    python3 scripts/fix_home_md.py <src-path> <home-repo>
+    python3 scripts/fix_home_md.py <src-path> <home-repo> [--export-home <path>]
 
 Arguments:
     src-path   Path to the local base markdown document (for example:
@@ -12,12 +12,15 @@ Arguments:
 
 Behavior:
 1. Keeps the same document path inside the canonical repository.
-2. Rewrites the local document into a machine-readable redirect stub.
-3. Prints the canonical path/url for follow-up actions.
+2. Optionally exports canonical-home content with the "Snapshots" section removed.
+3. Rewrites the local document into a machine-readable redirect stub.
+4. Prints the canonical path/url for follow-up actions.
 """
 
 from __future__ import annotations
 
+import argparse
+import re
 import sys
 from pathlib import Path
 from urllib.parse import quote
@@ -25,6 +28,7 @@ from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_MD_DIR = ROOT / "memory" / "kb" / "md"
+HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 
 
 def normalize_home_repo(raw: str) -> str:
@@ -63,12 +67,58 @@ def rewrite_as_redirect_stub(src_path: Path, home_repo: str, rel_src: Path) -> N
     src_path.write_text(body, encoding="utf-8")
 
 
-def main() -> int:
-    if len(sys.argv) != 3:
-        print("Usage: python3 scripts/fix_home_md.py <src-path> <home-repo>", file=sys.stderr)
-        return 1
+def strip_snapshots_section(markdown: str) -> str:
+    """Remove a section titled 'Snapshots' (any heading level), if present."""
+    lines = markdown.splitlines()
+    start_idx = None
+    start_level = None
+    for i, line in enumerate(lines):
+        match = HEADING_RE.match(line.strip())
+        if not match:
+            continue
+        level = len(match.group(1))
+        title = match.group(2).strip().lower()
+        if title == "snapshots":
+            start_idx = i
+            start_level = level
+            break
 
-    src = Path(sys.argv[1])
+    if start_idx is None or start_level is None:
+        return markdown
+
+    end_idx = len(lines)
+    for i in range(start_idx + 1, len(lines)):
+        match = HEADING_RE.match(lines[i].strip())
+        if not match:
+            continue
+        level = len(match.group(1))
+        if level <= start_level:
+            end_idx = i
+            break
+
+    while start_idx > 0 and lines[start_idx - 1].strip() == "":
+        start_idx -= 1
+
+    kept = lines[:start_idx] + lines[end_idx:]
+    return "\n".join(kept).rstrip() + "\n"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("src_path", help="Local source path under memory/kb/md/")
+    parser.add_argument("home_repo", help='Canonical home repo (owner/repo or just "repo")')
+    parser.add_argument(
+        "--export-home",
+        dest="export_home",
+        help="Optional output path for canonical-home content with Snapshots section removed",
+    )
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+
+    src = Path(args.src_path)
     if not src.is_absolute():
         src = ROOT / src
     src = src.resolve()
@@ -88,10 +138,20 @@ def main() -> int:
         return 1
 
     try:
-        home_repo = normalize_home_repo(sys.argv[2])
+        home_repo = normalize_home_repo(args.home_repo)
     except ValueError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 1
+
+    original = src.read_text(encoding="utf-8")
+    canonical_home = strip_snapshots_section(original)
+    if args.export_home:
+        export_path = Path(args.export_home)
+        if not export_path.is_absolute():
+            export_path = ROOT / export_path
+        export_path.parent.mkdir(parents=True, exist_ok=True)
+        export_path.write_text(canonical_home, encoding="utf-8")
+        print(f"Exported canonical-home content (without Snapshots): {export_path.relative_to(ROOT)}")
 
     rewrite_as_redirect_stub(src, home_repo, rel_src)
     print(f"Redirected local document: {rel_src}")
@@ -103,4 +163,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
