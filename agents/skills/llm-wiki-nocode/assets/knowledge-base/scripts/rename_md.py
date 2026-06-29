@@ -109,7 +109,15 @@ def main() -> int:
         old_raw.rename(new_raw)
         print(f"Moved: {old_raw.relative_to(ROOT)} -> {new_raw.relative_to(ROOT)}")
 
-    # 3. Update cross-references in all markdown files
+    # 3. Remove stale wiki source page if present (wiki-ingest will create a fresh one)
+    wiki_sources_dir = ROOT / "memory" / "llm-wiki" / "wiki" / "sources"
+    old_slug = re.sub(r"[^a-zA-Z0-9]+", "-", src.stem).strip("-").lower()
+    old_wiki_source = wiki_sources_dir / f"{old_slug}.md"
+    if old_wiki_source.exists():
+        old_wiki_source.unlink()
+        print(f"Removed stale wiki source: {old_wiki_source.relative_to(ROOT)}")
+
+    # 4. Update cross-references in all markdown files
     changed_files = update_references(old_name, new_name)
     if changed_files:
         print(f"\nUpdated references in {len(changed_files)} file(s):")
