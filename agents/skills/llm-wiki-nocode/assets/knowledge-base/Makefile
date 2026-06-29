@@ -1,4 +1,4 @@
-.PHONY: init convert convert-main convert-notebooks tabs-sync snapshots-sync base-md-sync wiki-ingest rename
+.PHONY: init convert convert-main convert-notebooks tabs-sync snapshots-sync base-md-sync wiki-ingest rename fix-home
 
 init:
 	uv sync
@@ -33,6 +33,16 @@ rename:
 	python3 scripts/rename_md.py "$(SRC)" "$(DST)"
 	@paths_file=$$(mktemp); \
 	printf '%s\n' "$(DST)" > "$$paths_file"; \
+	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \
+	rm -f "$$paths_file"
+	$(MAKE) snapshots-sync
+
+fix-home:
+	@test -n "$(SRC)" || (echo "SRC is required" && exit 1)
+	@test -n "$(HOME_REPO)" || (echo "HOME_REPO is required" && exit 1)
+	python3 scripts/fix_home_md.py "$(SRC)" "$(HOME_REPO)"
+	@paths_file=$$(mktemp); \
+	printf '%s\n' "$(SRC)" > "$$paths_file"; \
 	$(MAKE) base-md-sync PATHS_FILE="$$paths_file"; \
 	rm -f "$$paths_file"
 	$(MAKE) snapshots-sync
