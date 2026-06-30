@@ -20,7 +20,7 @@ This repository is a knowledge base for visited web sites and related context. I
 
 ## Reusable automation
 
-- The public `llm-wiki-nocode` skill (`ai-helpers/ai-skills-curated`) is the reusable entry point for browser tab lists, notebook-to-Markdown conversion, and the repo-local wiki workflow.
+- The public `llm-wiki-kb` skill (`ai-helpers/ai-skills-curated`) is the reusable entry point for browser tab lists, notebook-to-Markdown conversion, and the repo-local wiki workflow.
 - Use `make convert NOTEBOOK=<path>` for exact-stem notebook conversion that also clones into `memory/llm-wiki/raw/` and refreshes the wiki index; if the raw clone is created separately, follow up with `make wiki-ingest`.
 - Use `make base-md-sync` after manual edits to curated Markdown so the ToC, `memory/llm-wiki/raw/`, and the wiki index stay aligned.
 - Use `make rename SRC="<old-path>" DST="<new-path>"` (backed by `scripts/rename_md.py`) to rename or move a base MD document and automatically update all cross-references in `memory/kb/md/`, `memory/kb/snapshots/`, and `memory/llm-wiki/raw/`.
@@ -38,7 +38,7 @@ This repository is a knowledge base for visited web sites and related context. I
 ## LLM Wiki
 
 - The repo-local nocode wiki lives under `memory/llm-wiki/`.
-- Use the `llm-wiki-nocode` skill as the primary implementation guide for this capability.
+- Use the `llm-wiki-kb` skill as the primary implementation guide for this capability.
 - Use the three slash commands: `/wiki-ingest`, `/wiki-query`, and `/wiki-lint`.
 - Follow `memory/llm-wiki/wiki/index.md`, `memory/llm-wiki/wiki/log.md`, and the pages under `memory/llm-wiki/wiki/` as the wiki source of truth.
 - Use standard GitHub Markdown links (`[]()`) inside wiki pages and generated wiki catalogs.

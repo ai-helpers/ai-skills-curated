@@ -1,4 +1,4 @@
-# llm-wiki-nocode
+# llm-wiki-kb
 
 Unified public skill for:
 
@@ -10,7 +10,7 @@ Unified public skill for:
 ## Install
 
 ```bash
-npx skills add ai-helpers/ai-skills-curated llm-wiki-nocode --global
+npx skills add ai-helpers/ai-skills-curated llm-wiki-kb --global
 ```
 
 ## Setup
@@ -25,8 +25,8 @@ This enables wiki sources to link to browser tab snapshots and is excluded from 
 
 ## Skill file
 
-* `agents/skills/llm-wiki-nocode/SKILL.md`
-* assets in `agents/skills/llm-wiki-nocode/assets/knowledge-base/`
+* `agents/skills/llm-wiki-kb/SKILL.md`
+* assets in `agents/skills/llm-wiki-kb/assets/knowledge-base/`
 
 ## Included automation assets
 

@@ -1,5 +1,5 @@
 ---
-name: llm-wiki-nocode
+name: llm-wiki-kb
 description: Unified skill for bookmark snapshots, notebook-to-Markdown conversion, and repo-local LLM wiki maintenance workflows.
 license: MIT
 compatibility: "Requires: make, Python 3, uv, jupyter nbconvert"
@@ -14,7 +14,7 @@ metadata:
     - llm-wiki
 ---
 
-# LLM Wiki Nocode (Unified)
+# LLM Wiki KB (Unified)
 
 ## Overview
 

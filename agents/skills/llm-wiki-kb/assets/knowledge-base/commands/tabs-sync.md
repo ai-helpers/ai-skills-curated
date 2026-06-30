@@ -43,4 +43,4 @@ Use this command to capture your currently open Chrome browser tabs and save the
 - Include a table of contents for easy navigation.
 - Ensure each snapshot is linked from the related base markdown `Snapshots` section/table.
 - Commit directly to `main` without feature branches.
-- The public `llm-wiki-nocode` skill handles the core functionality.
+- The public `llm-wiki-kb` skill handles the core functionality.

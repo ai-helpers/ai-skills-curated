@@ -10,10 +10,20 @@ from pathlib import Path
 
 DOCS_ROOT = Path("memory/kb/md")
 RAW_ROOT = Path("memory/llm-wiki/raw")
-TOC_START = "<!-- llm-wiki-nocode-toc:start -->"
-TOC_END = "<!-- llm-wiki-nocode-toc:end -->"
+TOC_START = "<!-- llm-wiki-kb-toc:start -->"
+TOC_END = "<!-- llm-wiki-kb-toc:end -->"
+_TOC_LEGACY_START = "<!-- llm-wiki-nocode-toc:start -->"
+_TOC_LEGACY_END = "<!-- llm-wiki-nocode-toc:end -->"
 TOC_PATTERN = re.compile(
-    rf"\n?{re.escape(TOC_START)}.*?{re.escape(TOC_END)}\n?",
+    r"\n?(?:"
+    + re.escape(TOC_START)
+    + r"|"
+    + re.escape(_TOC_LEGACY_START)
+    + r").*?(?:"
+    + re.escape(TOC_END)
+    + r"|"
+    + re.escape(_TOC_LEGACY_END)
+    + r")\n?",
     re.DOTALL,
 )
 

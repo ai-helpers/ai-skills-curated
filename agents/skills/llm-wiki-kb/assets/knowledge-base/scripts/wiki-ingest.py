@@ -213,7 +213,7 @@ def build_readme(source_pages: list[tuple[str, Path, str]]) -> str:
         "",
         "Use this tree for wiki ingestion, retrieval, and linting work. All generated wiki artifacts stay under `memory/llm-wiki/`.",
         "",
-        "The `llm-wiki-nocode` skill documents the workflow for this tree.",
+        "The `llm-wiki-kb` skill documents the workflow for this tree.",
         "",
         "## Ingest",
         "",
