@@ -12,6 +12,7 @@
       * [Skills related to dbt](#skills-related-to-dbt)
       * [AI helpers skill sets](#ai-helpers-skill-sets)
         * [Managing Python projects with uv](#managing-python-projects-with-uv)
+        * [OpenTREP](#opentrep)
     * [Data Engineering Helpers](#data-engineering-helpers)
   * [Getting started](#getting-started)
     * [List the skills already installed](#list-the-skills-already-installed)
@@ -59,6 +60,14 @@ these companies.
 
 * [GitHub - AI Helpers / AI Skills curated - `managing-python-projects-with-uv` skill set](https://github.com/ai-helpers/ai-skills-curated/tree/main/agents/skills/managing-python-projects-with-uv)
 * [Skills.sh - AI Helpers / AI Skills curated - `managing-python-projects-with-uv` skill set](https://skills.sh/ai-helpers/ai-skills-curated/managing-python-projects-with-uv)
+
+##### OpenTREP
+
+* [OpenTREP](https://github.com/trep/opentrep) is a C++/Python travel-request
+  interpretation and geographical point-of-reference (POR) search library, indexing
+  [OpenTravelData (OPTD)](https://github.com/opentraveldata/opentraveldata) data with
+  Xapian, and optionally backed by SQLite3, MySQL/MariaDB, or PostgreSQL.
+* [GitHub - AI Helpers / AI Skills curated - `opentrep` skill set](https://github.com/ai-helpers/ai-skills-curated/tree/main/agents/skills/opentrep)
 
 ### Data Engineering Helpers
 
